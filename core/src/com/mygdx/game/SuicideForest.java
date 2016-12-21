@@ -7,27 +7,34 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class SuicideForest extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	
-	@Override
-	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
-	}
 
-	@Override
-	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
-	}
-	
-	@Override
-	public void dispose () {
-		batch.dispose();
-		img.dispose();
-	}
+    SpriteBatch batch;
+    Texture img;
+
+    @Override
+    public void create() {
+        batch = new SpriteBatch();
+        Gdx.gl.glClearColor(1, 0, 0, 1); // colour to clear the screen with
+        
+        stateManager = new StateManager();
+        State firstScreen = new MenuState(stateManager);
+        stateManager.push(firstScreen); // load the first screen
+    }
+
+    @Override
+    public void render() {
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        // handle input
+        stateManager.handleInput();
+        // update the game states
+        stateManager.update(Gdx.graphics.getDeltaTime());
+        // draw the screen
+        stateManager.render(batch);
+    }
+
+    @Override
+    public void dispose() {
+        batch.dispose();
+        img.dispose();
+    }
 }
