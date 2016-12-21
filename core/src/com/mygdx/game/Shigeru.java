@@ -20,7 +20,6 @@ public class Shigeru {
     private Texture shigeruPic; // ADD base picture for Shigeru
     private Rectangle bounds;
 
-    private final float GRAVITY = -15;  // gravity for jumping?
     private final float MOVEMENT = 100;
     
     // collisions of character
@@ -29,10 +28,6 @@ public class Shigeru {
         velocity = new Vector3(MOVEMENT, 0, 0);
         shigeruPic = new Texture("shigeruPic.png");
         bounds = new Rectangle(position.x, position.y, shigeruPic.getWidth(), shigeruPic.getHeight());
-    }
-
-    public void jump() {
-        velocity.y = 250;
     }
     
     public void render(SpriteBatch batch){
