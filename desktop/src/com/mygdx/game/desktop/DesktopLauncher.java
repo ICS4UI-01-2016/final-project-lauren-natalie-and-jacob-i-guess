@@ -7,6 +7,8 @@ import com.mygdx.game.SuicideForest;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new SuicideForest(), config);
+		config.width = SuicideForest.WIDTH;
+                config.height = SuicideForest.HEIGHT;
+                new LwjglApplication(new SuicideForest(), config);
 	}
 }
