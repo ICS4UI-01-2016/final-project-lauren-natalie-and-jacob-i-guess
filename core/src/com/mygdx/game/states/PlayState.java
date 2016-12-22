@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Shigeru;
 import com.mygdx.game.SuicideForest;
-import com.mygdx.game.Pipe;
+import com.mygdx.game.Enemy;
 
 /**
  *
@@ -19,26 +19,18 @@ import com.mygdx.game.Pipe;
 public class PlayState extends State {
 
     private Shigeru shigeru;
-    private Pipe[] pipes;
+    private Enemy[] enemy;
     private Texture bg;
-
     private final float CAM_X_OFFSET = 100;
-    private final float PIPE_GAP_AMOUNT = 4;
 
     public PlayState(StateManager sm) {
         super(sm);
         setCameraView(SuicideForest.WIDTH / 2, SuicideForest.HEIGHT / 2);
         //setCameraPosition(SuicideForest.WIDTH/2, SuicideForest.HEIGHT/2);
         shigeru = new Shigeru(90, 30);
-        bg = new Texture("bgPic.jpg");
+        bg = new Texture("fullBgPic.png");
         // move the camera to match the shigeru
         moveCameraX(shigeru.getX() + CAM_X_OFFSET);
-
-        // creating the pipes
-        pipes = new Pipe[3];
-        for (int i = 0; i < pipes.length; i++) {
-            pipes[i] = new Pipe(200 + PIPE_GAP_AMOUNT * Pipe.WIDTH * i);
-        }
     }
 
     @Override
@@ -52,10 +44,6 @@ public class PlayState extends State {
         batch.draw(bg, getCameraX() - getViewWidth() / 2, getCameraY() - getViewHeight() / 2);
         // draw the shigeru
         shigeru.render(batch);
-        // draw pipes
-        for (int i = 0; i < pipes.length; i++) {
-            pipes[i].render(batch);
-        }
         // end the stuff to draw
         batch.end();
     }
@@ -75,22 +63,13 @@ public class PlayState extends State {
             gsm.pop();
         }
 
-        // did the shigeru hit a pipe
-        for (int i = 0; i < pipes.length; i++) {
-            if (pipes[i].collides(shigeru)) {
+        // did the shigeru hit an enemy
+        for (int i = 0; i < enemy.length; i++) {
+            if (enemy[i].collides(shigeru)) {
                 // end the game
                 StateManager gsm = getStateManager();
                 // pop off the game screen to go to menu
                 gsm.pop();
-            }
-        }
-
-        // adjust the pipes
-        for (int i = 0; i < pipes.length; i++) {
-            // has the shigeru passed the pipe
-            if (getCameraX() - SuicideForest.WIDTH / 4 > pipes[i].getX() + Pipe.WIDTH) {
-                float x = pipes[i].getX() + PIPE_GAP_AMOUNT * Pipe.WIDTH * pipes.length;
-                pipes[i].setX(x);
             }
         }
     }
@@ -103,14 +82,13 @@ public class PlayState extends State {
         // pushRightButton
         // pushLeftButton
     }
-    
+
     @Override
     public void dispose() {
         bg.dispose();
         shigeru.dispose();
-        for(int i = 0; i < pipes.length; i++){
-            pipes[i].dispose();
+        for (int i = 0; i < enemy.length; i++) {
+            enemy[i].dispose();
         }
     }
-
 }
