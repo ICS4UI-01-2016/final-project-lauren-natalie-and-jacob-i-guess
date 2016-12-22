@@ -1,42 +1,44 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package com.mygdx.game.states;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Shigeru;
 import com.mygdx.game.SuicideForest;
+import com.mygdx.game.Pipe;
 
 /**
  *
- * @author pircn0556
+ * @author pirc0556
  */
 public class PlayState extends State {
 
     private Shigeru shigeru;
+    private Pipe[] pipes;
     private Texture bg;
-    private int score;
-    private BitmapFont font;
-    private final float CAM_X_OFFSET = 30;
+
+    private final float CAM_X_OFFSET = 100;
     private final float PIPE_GAP_AMOUNT = 4;
 
     public PlayState(StateManager sm) {
         super(sm);
         setCameraView(SuicideForest.WIDTH / 2, SuicideForest.HEIGHT / 2);
-        //setCameraPosition(FlappyBird.WIDTH/2, FlappyBird.HEIGHT/2);
-        shigeru = new Shigeru(50, 200);
-        bg = new Texture("bg.png");
-        // move the camera to match the bird
+        //setCameraPosition(SuicideForest.WIDTH/2, SuicideForest.HEIGHT/2);
+        shigeru = new Shigeru(90, 30);
+        bg = new Texture("bgPic.jpg");
+        // move the camera to match the shigeru
         moveCameraX(shigeru.getX() + CAM_X_OFFSET);
 
-        // set up the score and font
-        score = 0;
-        font = new BitmapFont();
+        // creating the pipes
+        pipes = new Pipe[3];
+        for (int i = 0; i < pipes.length; i++) {
+            pipes[i] = new Pipe(200 + PIPE_GAP_AMOUNT * Pipe.WIDTH * i);
+        }
     }
 
     @Override
@@ -50,8 +52,10 @@ public class PlayState extends State {
         batch.draw(bg, getCameraX() - getViewWidth() / 2, getCameraY() - getViewHeight() / 2);
         // draw the shigeru
         shigeru.render(batch);
-        // draw the score
-        font.draw(batch, "" + score, getCameraX(), getCameraY() + 150);
+        // draw pipes
+        for (int i = 0; i < pipes.length; i++) {
+            pipes[i].render(batch);
+        }
         // end the stuff to draw
         batch.end();
     }
@@ -60,30 +64,53 @@ public class PlayState extends State {
     public void update(float deltaTime) {
         // update any game models
         shigeru.update(deltaTime);
-        // move the camera to match the bird
+        // move the camera to match the shigeru
         moveCameraX(shigeru.getX() + CAM_X_OFFSET);
 
-        // did bird hit the bottom of the screen
+        // did shigeru hit the bottom of the screen
         if (shigeru.getY() <= 0) {
             // end the game
             StateManager gsm = getStateManager();
             // pop off the game screen to go to menu
             gsm.pop();
         }
-    }
-}
-@Override
-        public void handleInput() {
-        // handle any player input changes
 
-        if (Gdx.input.justTouched()) {
-            bird.jump();
+        // did the shigeru hit a pipe
+        for (int i = 0; i < pipes.length; i++) {
+            if (pipes[i].collides(shigeru)) {
+                // end the game
+                StateManager gsm = getStateManager();
+                // pop off the game screen to go to menu
+                gsm.pop();
+            }
+        }
+
+        // adjust the pipes
+        for (int i = 0; i < pipes.length; i++) {
+            // has the shigeru passed the pipe
+            if (getCameraX() - SuicideForest.WIDTH / 4 > pipes[i].getX() + Pipe.WIDTH) {
+                float x = pipes[i].getX() + PIPE_GAP_AMOUNT * Pipe.WIDTH * pipes.length;
+                pipes[i].setX(x);
+            }
         }
     }
 
     @Override
-        public void dispose() {
+    public void handleInput() {
+        // handle any player input changes
+        // pushUpButton
+        // pushDownButton
+        // pushRightButton
+        // pushLeftButton
+    }
+    
+    @Override
+    public void dispose() {
         bg.dispose();
         shigeru.dispose();
+        for(int i = 0; i < pipes.length; i++){
+            pipes[i].dispose();
+        }
     }
+
 }

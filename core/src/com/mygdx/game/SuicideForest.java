@@ -5,27 +5,30 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.states.MenuState;
+import com.mygdx.game.states.State;
 import com.mygdx.game.states.StateManager;
 
-public class SuicideForest extends ApplicationAdapter {
 
-    public static final int WIDTH = 480;
-    public static final int HEIGHT = 800;
+public class SuicideForest extends ApplicationAdapter {
+    public static final int WIDTH = 680;
+    public static final int HEIGHT = 680;
     
     private SpriteBatch batch; // to draw stuffs
     private StateManager stateManager; // look after the different states
 
-    // menu 
-//        @Override
-//        public void create() {
-//        batch = new SpriteBatch();
-//        Gdx.gl.glClearColor(1, 0, 0, 1); // colour to clear the screen with
-//        
-//        stateManager = new StateManager();
-//        State firstScreen = new MenuState(stateManager);
-//        stateManager.push(firstScreen); // load the first screen
-//    }
-    
+    // Initial Setup
+    @Override
+    public void create() {
+        batch = new SpriteBatch();
+        Gdx.gl.glClearColor(1, 0, 0, 1); // colour to clear the screen with
+        
+        stateManager = new StateManager();
+        State firstScreen = new MenuState(stateManager);
+        stateManager.push(firstScreen); // load the first screen
+    }
+
+    // Game Loop
     @Override
     public void render() {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -37,9 +40,9 @@ public class SuicideForest extends ApplicationAdapter {
         stateManager.render(batch);
     }
 
+    // End Section
     @Override
     public void dispose() {
         batch.dispose();
-        img.dispose();
     }
 }

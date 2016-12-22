@@ -6,8 +6,8 @@ package com.mygdx.game;
 
 /**
  *
- * @author pircn0556
+ * @author halll7908
  */
-public class Undead {
+public class Enemy {
     
 }
