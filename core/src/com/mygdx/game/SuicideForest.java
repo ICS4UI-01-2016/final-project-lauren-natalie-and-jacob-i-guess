@@ -12,7 +12,7 @@ import com.mygdx.game.states.StateManager;
 
 public class SuicideForest extends ApplicationAdapter {
     public static final int WIDTH = 900;
-    public static final int HEIGHT = 700;
+    public static final int HEIGHT = 680;
     
     private SpriteBatch batch; // to draw stuffs
     private StateManager stateManager; // look after the different states
@@ -21,7 +21,7 @@ public class SuicideForest extends ApplicationAdapter {
     @Override
     public void create() {
         batch = new SpriteBatch();
-        Gdx.gl.glClearColor(1, 0, 0, 1); // colour to clear the screen with
+        Gdx.gl.glClearColor(0, 0, 0, 0); // colour to clear the screen with
         
         stateManager = new StateManager();
         State firstScreen = new MenuState(stateManager);

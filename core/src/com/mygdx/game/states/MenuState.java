@@ -20,7 +20,7 @@ public class MenuState extends State{
     
     public MenuState(StateManager gsm){
         super(gsm);
-        bg = new Texture("bg.png");
+        bg = new Texture("mgPic.png");
         button = new Texture("playbtn.png");
         setCameraView(SuicideForest.WIDTH, SuicideForest.HEIGHT);
         setCameraPosition(getViewWidth()/2, getViewHeight()/2);

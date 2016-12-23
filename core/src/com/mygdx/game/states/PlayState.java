@@ -21,11 +21,11 @@ public class PlayState extends State {
     private Shigeru shigeru;
     private Enemy[] enemy;
     private Texture bg;
-    private final float CAM_X_OFFSET = 100;
+    private final float CAM_X_OFFSET = 400;
 
     public PlayState(StateManager sm) {
         super(sm);
-        setCameraView(SuicideForest.WIDTH / 2, SuicideForest.HEIGHT / 2);
+        setCameraView(SuicideForest.WIDTH, SuicideForest.HEIGHT);
         //setCameraPosition(SuicideForest.WIDTH/2, SuicideForest.HEIGHT/2);
         shigeru = new Shigeru(90, 30);
         bg = new Texture("fullBgPic.png");
@@ -64,14 +64,14 @@ public class PlayState extends State {
         }
 
         // did the shigeru hit an enemy
-        for (int i = 0; i < enemy.length; i++) {
-            if (enemy[i].collides(shigeru)) {
-                // end the game
-                StateManager gsm = getStateManager();
-                // pop off the game screen to go to menu
-                gsm.pop();
-            }
-        }
+//        for (int i = 0; i < enemy.length; i++) {
+//            if (enemy[i].collides(shigeru)) {
+//                // end the game
+//                StateManager gsm = getStateManager();
+//                // pop off the game screen to go to menu
+//                gsm.pop();
+//            }
+//        }
     }
 
     @Override
