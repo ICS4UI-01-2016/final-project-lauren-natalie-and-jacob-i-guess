@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Shigeru;
 import com.mygdx.game.SuicideForest;
 import com.mygdx.game.Enemy;
+import com.mygdx.game.Zombie;
 
 /**
  *
@@ -19,6 +20,7 @@ import com.mygdx.game.Enemy;
 public class PlayState extends State {
 
     private Shigeru shigeru;
+    private Zombie zombie;
     private Enemy[] enemy;
     private Texture bg;
     private final float CAM_X_OFFSET = 400;
@@ -28,6 +30,7 @@ public class PlayState extends State {
         setCameraView(SuicideForest.WIDTH, SuicideForest.HEIGHT);
         //setCameraPosition(SuicideForest.WIDTH/2, SuicideForest.HEIGHT/2);
         shigeru = new Shigeru(90, 30);
+        zombie = new Zombie(1000, 30);
         bg = new Texture("fullBgPic.png");
         // move the camera to match the shigeru
         moveCameraX(shigeru.getX() + CAM_X_OFFSET);
@@ -44,6 +47,8 @@ public class PlayState extends State {
         batch.draw(bg, getCameraX() - getViewWidth() / 2, getCameraY() - getViewHeight() / 2);
         // draw the shigeru
         shigeru.render(batch);
+        // draw the zombie
+        zombie.render(batch);
         // end the stuff to draw
         batch.end();
     }
@@ -63,6 +68,12 @@ public class PlayState extends State {
             gsm.pop();
         }
 
+        // did zombie hit the shigeru                                           won't work if gsm.pop() is used?
+        if (zombie.collides(shigeru)){
+            StateManager gsm = getStateManager();
+            // pop off the game screen to go to menu
+            gsm.pop();
+        }
         // did the shigeru hit an enemy
 //        for (int i = 0; i < enemy.length; i++) {
 //            if (enemy[i].collides(shigeru)) {
@@ -87,8 +98,8 @@ public class PlayState extends State {
     public void dispose() {
         bg.dispose();
         shigeru.dispose();
-        for (int i = 0; i < enemy.length; i++) {
-            enemy[i].dispose();
-        }
+//        for (int i = 0; i < enemy.length; i++) {
+//            enemy[i].dispose();
+//        }
     }
 }
