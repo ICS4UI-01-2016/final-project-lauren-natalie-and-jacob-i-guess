@@ -21,6 +21,9 @@ public class PlayState extends State {
 
     private Shigeru shigeru;
     private Zombie zombie;
+    private Texture heart1;
+    private Texture heart2;
+    private Texture heart3;
     private Enemy[] enemy;
     private Texture bg;
     private final float CAM_X_OFFSET = 400;
@@ -32,6 +35,9 @@ public class PlayState extends State {
         shigeru = new Shigeru(90, 30);
         zombie = new Zombie(1000, 30);
         bg = new Texture("fullBgPic.png");
+        heart1 = new Texture("heart.png");
+        heart2 = new Texture("heart.png");
+        heart3 = new Texture("heart.png");
         // move the camera to match the shigeru
         moveCameraX(shigeru.getX() + CAM_X_OFFSET);
     }
@@ -45,6 +51,10 @@ public class PlayState extends State {
         batch.begin();
         // draw the background
         batch.draw(bg, getCameraX() - getViewWidth() / 2, getCameraY() - getViewHeight() / 2);
+        // draw the hearts
+        batch.draw(heart1, getCameraX() - getViewWidth() / 2 + 15, 615);
+        batch.draw(heart2, getCameraX() - getViewWidth() / 2 + 80, 615);
+        batch.draw(heart3, getCameraX() - getViewWidth() / 2 + 145, 615);
         // draw the shigeru
         shigeru.render(batch);
         // draw the zombie
