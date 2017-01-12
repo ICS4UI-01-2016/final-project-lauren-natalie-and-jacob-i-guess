@@ -38,7 +38,8 @@ public class Shigeru {
         for (int i = 1; i <= 4; i++) {
             frames.add(new TextureRegion(new Texture("ShigeruRun" + i + ".png")));
         }
-        shigerun = new Animation(1f, frames);
+        shigerun = new Animation(0.2f, frames);
+        shigerun.setPlayMode(Animation.PlayMode.LOOP);
     }
 
     // player input methods:
