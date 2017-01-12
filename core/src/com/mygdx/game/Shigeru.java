@@ -31,7 +31,7 @@ public class Shigeru {
     public Shigeru(int x, int y) {
         position = new Vector3(x, y, 0);
         velocity = new Vector3(MOVEMENT, 0, 0);
-        bounds = new Rectangle(position.x, position.y, shigeruPic.getWidth(), shigeruPic.getHeight());
+        
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
         for (int i = 1; i <= 4; i++) {
@@ -39,6 +39,7 @@ public class Shigeru {
         }
         shigerun = new Animation(0.2f, frames);
         shigerun.setPlayMode(Animation.PlayMode.LOOP);
+        bounds = new Rectangle(position.x, position.y, shigerun.getKeyFrames()[0].getTexture().getWidth(), shigerun.getKeyFrames()[0].getTexture().getHeight());
     }
 
     // player input methods:
