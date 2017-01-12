@@ -6,9 +6,12 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Array;
 
 /**
  *
@@ -21,14 +24,23 @@ public class Shigeru {
     private Texture shigeruPic;
     private Rectangle bounds;
     private final float MOVEMENT = 100;
+    private float statetime = 0;
+    //Shigeru run animation
+    private Animation shigerun;
 
     public Shigeru(int x, int y) {
         position = new Vector3(x, y, 0);
         velocity = new Vector3(MOVEMENT, 0, 0);
         shigeruPic = new Texture("shigeruEdit.png");
         bounds = new Rectangle(position.x, position.y, shigeruPic.getWidth(), shigeruPic.getHeight());
+
+        Array<TextureRegion> frames = new Array<TextureRegion>();
+        for (int i = 1; i <= 4; i++) {
+            frames.add(new TextureRegion(new Texture("ShigeruRun" + i + ".png")));
+        }
+        shigerun = new Animation(1f, frames);
     }
-    
+
     // player input methods:
     // pushUpButton
     // pushDownButton
@@ -44,10 +56,11 @@ public class Shigeru {
 
         // set the new bounds
         bounds.setPosition(position.x, position.y);
+        statetime += deltaTime;
     }
 
     public void render(SpriteBatch batch) {
-        batch.draw(shigeruPic, position.x, position.y);
+        batch.draw(shigerun.getKeyFrame(statetime), position.x, position.y);
     }
 
     public float getX() {
