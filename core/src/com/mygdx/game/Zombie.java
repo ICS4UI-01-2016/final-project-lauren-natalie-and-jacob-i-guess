@@ -19,6 +19,7 @@ public class Zombie {
     private Vector3 position;
     private Vector3 velocity;
     private Texture shigeruPic;
+    private Texture arrowPic;
     private Rectangle bounds;
     private final float MOVEMENT = 100;
 
@@ -27,6 +28,8 @@ public class Zombie {
         velocity = new Vector3(MOVEMENT, 0, 0);
         shigeruPic = new Texture("zombieChild.png");
         bounds = new Rectangle(position.x, position.y, shigeruPic.getWidth(), shigeruPic.getHeight());
+        arrowPic = new Texture("arrowUp.png");
+
     }
 
     // player input methods:
@@ -48,6 +51,8 @@ public class Zombie {
 
     public void render(SpriteBatch batch) {
         batch.draw(shigeruPic, position.x, position.y);
+                batch.draw(arrowPic, position.x, position.y + 200);
+
     }
 
     public float getX() {
