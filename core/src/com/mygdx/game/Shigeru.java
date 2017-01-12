@@ -31,7 +31,6 @@ public class Shigeru {
     public Shigeru(int x, int y) {
         position = new Vector3(x, y, 0);
         velocity = new Vector3(MOVEMENT, 0, 0);
-        shigeruPic = new Texture("shigeruEdit.png");
         bounds = new Rectangle(position.x, position.y, shigeruPic.getWidth(), shigeruPic.getHeight());
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
