@@ -11,7 +11,7 @@ import com.mygdx.game.states.StateManager;
 
 
 public class SuicideForest extends ApplicationAdapter {
-    public static final int WIDTH = 900;
+    public static final int WIDTH = 680;
     public static final int HEIGHT = 680;
     
     private SpriteBatch batch; // to draw stuffs

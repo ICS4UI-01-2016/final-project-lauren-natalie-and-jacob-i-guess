@@ -19,7 +19,7 @@ public class MenuState extends State{
     
     public MenuState(StateManager gsm){
         super(gsm);
-        bg = new Texture("MenuScreen680900.png");
+        bg = new Texture("MenuScreen680.png");
         setCameraView(SuicideForest.WIDTH, SuicideForest.HEIGHT);
         setCameraPosition(getViewWidth()/2, getViewHeight()/2);
     }
