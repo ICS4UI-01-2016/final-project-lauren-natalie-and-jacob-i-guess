@@ -41,12 +41,7 @@ public class Shigeru {
         shigerun.setPlayMode(Animation.PlayMode.LOOP);
         bounds = new Rectangle(position.x, position.y, shigerun.getKeyFrames()[0].getTexture().getWidth(), shigerun.getKeyFrames()[0].getTexture().getHeight());
     }
-
-    // player input methods:
-    // pushUpButton
-    // pushDownButton
-    // pushRightButton
-    // pushLeftButton
+    
     public void update(float deltaTime) {
         // scaling velocity by time
         velocity.scl(deltaTime);
