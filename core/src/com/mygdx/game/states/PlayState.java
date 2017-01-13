@@ -6,6 +6,7 @@
 package com.mygdx.game.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Shigeru;
@@ -84,32 +85,34 @@ public class PlayState extends State {
             // pop off the game screen to go to menu
             gsm.pop();
         }
-        // did the shigeru hit an enemy
-//        for (int i = 0; i < enemy.length; i++) {
-//            if (enemy[i].collides(shigeru)) {
-//                // end the game
-//                StateManager gsm = getStateManager();
-//                // pop off the game screen to go to menu
-//                gsm.pop();
-//            }
-//        }
     }
 
     @Override
     public void handleInput() {
         // handle any player input changes
+        
         // pushUpButton
+        if (Gdx.input.isButtonPressed(Input.Keys.UP)) {
+            zombie.kill();
+        }
         // pushDownButton
+        if (Gdx.input.isButtonPressed(Input.Keys.DOWN)) {
+            zombie.kill();
+        }
         // pushRightButton
+        if (Gdx.input.isButtonPressed(Input.Keys.RIGHT)) {
+            zombie.kill();
+        }
         // pushLeftButton
+        if (Gdx.input.isButtonPressed(Input.Keys.LEFT)) {
+            zombie.kill();
+        }
     }
 
     @Override
     public void dispose() {
         bg.dispose();
-        shigeru.dispose();
-//        for (int i = 0; i < enemy.length; i++) {
-//            enemy[i].dispose();
-//        }
+        // shigeru.dispose();
+        zombie.dispose();
     }
 }
