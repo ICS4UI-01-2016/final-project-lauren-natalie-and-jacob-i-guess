@@ -21,7 +21,7 @@ import com.mygdx.game.Zombie;
 public class PlayState extends State {
 
     private Shigeru shigeru;
-    private Zombie zombie;
+    private Zombie[] zombie;
     private Texture heart1;
     private Texture heart2;
     private Texture heart3;
@@ -32,15 +32,20 @@ public class PlayState extends State {
     public PlayState(StateManager sm) {
         super(sm);
         setCameraView(SuicideForest.WIDTH, SuicideForest.HEIGHT);
-        //setCameraPosition(SuicideForest.WIDTH/2, SuicideForest.HEIGHT/2);
         shigeru = new Shigeru(90, 30);
-        zombie = new Zombie(680, 30);
+        // zombie = new Zombie(680, 30);
         bg = new Texture("fullBgPic.png");
         heart1 = new Texture("heart.png");
         heart2 = new Texture("heart.png");
         heart3 = new Texture("heart.png");
         // move the camera to match the shigeru
         moveCameraX(shigeru.getX() + CAM_X_OFFSET);
+        
+        // creating the zombies
+        zombie = new Zombie[3];
+        for (int i = 0; i < zombie.length; i++) {
+            zombie[i] = new Zombie(200 + PIPE_GAP_AMOUNT * Pipe.WIDTH * i);
+        }
     }
 
     @Override

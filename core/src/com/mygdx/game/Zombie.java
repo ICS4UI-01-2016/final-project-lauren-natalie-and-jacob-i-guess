@@ -74,7 +74,10 @@ public class Zombie {
     }
 
     public void kill() {
-        batch.erase();
+        // have zombie deleted from screen
+        
+        // new zombie with different arrow will come on screen next
+        
     }
 
     public void dispose() {
