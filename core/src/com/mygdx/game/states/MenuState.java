@@ -30,12 +30,17 @@ public class MenuState extends State{
     }
 
     @Override
-    public void render(SpriteBatch batch) {
+    public void render(SpriteBatch batch, SpriteBatch shapeRenderer) {
         batch.setProjectionMatrix(getCombinedCamera());
-        batch.begin();
-        batch.draw(play, buttonx, buttony);
+        batch.begin();       
         batch.draw(bg, 0, 0, getViewWidth(), getViewHeight());
         batch.end();
+        
+        shapeRenderer.setProjectionMatrix(getCombinedCamera());
+        shapeRenderer.begin(ShapeType:Line);
+        shapeRenderer.rect(0,0,10,10);
+        shapeRenderer.end();
+        
     }
 
     @Override
