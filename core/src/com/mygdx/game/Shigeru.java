@@ -77,6 +77,6 @@ public class Shigeru {
     }
 
     public void dispose() {
-        shigeruPic.dispose();
+        // shigeruPic.dispose();
     }
 }
