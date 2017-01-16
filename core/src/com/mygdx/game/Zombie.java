@@ -73,12 +73,11 @@ public class Zombie {
         return false;
     }
 
-    public void kill() {
-        // have zombie deleted from screen
-        
-        // new zombie with different arrow will come on screen next
-        
-    }
+//    public void reset() {
+//        // have zombie deleted from screen
+//        // reset farther down screen
+//        zombie[i] = new (680, 30);
+//    }
 
     public void dispose() {
         zombie.dispose();

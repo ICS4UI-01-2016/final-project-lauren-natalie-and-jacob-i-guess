@@ -31,18 +31,17 @@ public class PlayState extends State {
         super(sm);
         setCameraView(SuicideForest.WIDTH, SuicideForest.HEIGHT);
         shigeru = new Shigeru(90, 30);
-        // zombie = new Zombie(680, 30);
         bg = new Texture("fullBgPic.png");
         heart1 = new Texture("heart.png");
         heart2 = new Texture("heart.png");
         heart3 = new Texture("heart.png");
         // move the camera to match the shigeru
         moveCameraX(shigeru.getX() + CAM_X_OFFSET);
-        
+
         // creating the zombies
         zombie = new Zombie[3];
         for (int i = 0; i < zombie.length; i++) {
-            zombie[i] = new Zombie(200 + PIPE_GAP_AMOUNT * Pipe.WIDTH * i);
+            zombie[i] = new Zombie(680, 30);
         }
     }
 
@@ -62,7 +61,9 @@ public class PlayState extends State {
         // draw the shigeru
         shigeru.render(batch);
         // draw the zombie
-        zombie.render(batch);
+        for (int i = 0; i < zombie.length; i++) {
+            zombie[i].render(batch);
+        }
         // end the stuff to draw
         batch.end();
     }
@@ -82,33 +83,59 @@ public class PlayState extends State {
             gsm.pop();
         }
 
-        // did zombie hit the shigeru                                           won't work if gsm.pop() is used?
-        if (zombie.collides(shigeru)){
-            StateManager gsm = getStateManager();
-            // pop off the game screen to go to menu
-            gsm.pop();
+        // did the zombie hit the shigeru
+        for (int i = 0; i < zombie.length; i++) {
+            if (zombie[i].collides(shigeru)) {
+                // end the game
+                StateManager gsm = getStateManager();
+                // pop off the game screen to go to menu
+                gsm.pop();
+            }
         }
     }
 
     @Override
     public void handleInput() {
         // handle any player input changes
-        
+
         // pushUpButton
-        if (Gdx.input.isButtonPressed(Input.Keys.UP)) {
-            zombie.kill();
+        // if arrow above zombie is UP
+        if () {
+            if (Gdx.input.isButtonPressed(Input.Keys.UP)) {
+                for (int i = 0; i < zombie.length; i++) {
+                    zombie[i] = new Zombie(680, 30);
+                }
+            }
         }
+
         // pushDownButton
-        if (Gdx.input.isButtonPressed(Input.Keys.DOWN)) {
-            zombie.kill();
+        // if arrow above zombie is DOWN
+        if () {
+            if (Gdx.input.isButtonPressed(Input.Keys.DOWN)) {
+                for (int i = 0; i < zombie.length; i++) {
+                    zombie[i] = new Zombie(680, 30);
+                }
+            }
         }
+
         // pushRightButton
-        if (Gdx.input.isButtonPressed(Input.Keys.RIGHT)) {
-            zombie.kill();
+        // if arrow above zombie is RIGHT
+        if () {
+            if (Gdx.input.isButtonPressed(Input.Keys.RIGHT)) {
+                for (int i = 0; i < zombie.length; i++) {
+                    zombie[i] = new Zombie(680, 30);
+                }
+            }
         }
+
         // pushLeftButton
-        if (Gdx.input.isButtonPressed(Input.Keys.LEFT)) {
-            zombie.kill();
+        // if arrow above zombie is LEFT
+        if () {
+            if (Gdx.input.isButtonPressed(Input.Keys.LEFT)) {
+                for (int i = 0; i < zombie.length; i++) {
+                    zombie[i] = new Zombie(680, 30);
+                }
+            }
         }
     }
 
