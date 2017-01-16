@@ -8,6 +8,8 @@ package com.mygdx.game.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.game.SuicideForest;
 
@@ -20,6 +22,9 @@ public class MenuState extends State{
     private Rectangle play;
     private float buttonx = 0;
     private float buttony = 0;
+    private ShapeRenderer shapeRenderer = new ShapeRenderer();
+    
+    
     
     public MenuState(StateManager gsm){
         super(gsm);
@@ -28,16 +33,16 @@ public class MenuState extends State{
         setCameraPosition(getViewWidth()/2, getViewHeight()/2);
         play = new Rectangle(100,100,100,100);
     }
-
+   
     @Override
-    public void render(SpriteBatch batch, SpriteBatch shapeRenderer) {
+    public void render(SpriteBatch batch) {
         batch.setProjectionMatrix(getCombinedCamera());
         batch.begin();       
         batch.draw(bg, 0, 0, getViewWidth(), getViewHeight());
         batch.end();
         
         shapeRenderer.setProjectionMatrix(getCombinedCamera());
-        shapeRenderer.begin(ShapeType:Line);
+        shapeRenderer.begin(ShapeType.Line);
         shapeRenderer.rect(0,0,10,10);
         shapeRenderer.end();
         
@@ -60,4 +65,5 @@ public class MenuState extends State{
     public void dispose() {
         bg.dispose();
     }
+
 }
