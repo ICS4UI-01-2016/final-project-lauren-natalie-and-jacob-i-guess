@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Shigeru;
 import com.mygdx.game.SuicideForest;
-import com.mygdx.game.Enemy;
 import com.mygdx.game.Zombie;
 
 /**
@@ -25,7 +24,6 @@ public class PlayState extends State {
     private Texture heart1;
     private Texture heart2;
     private Texture heart3;
-    private Enemy[] enemy;
     private Texture bg;
     private final float CAM_X_OFFSET = 400;
 
