@@ -19,7 +19,6 @@ public class Zombie {
     private Vector3 position;
     private Vector3 velocity;
     private Texture zombie;
-    private Texture arrowPicUp;
     private Rectangle bounds;
     private final float MOVEMENT = 100;
 
@@ -28,15 +27,8 @@ public class Zombie {
         velocity = new Vector3(MOVEMENT, 0, 0);
         zombie = new Texture("zombieChild.png");
         bounds = new Rectangle(position.x, position.y, zombie.getWidth(), zombie.getHeight());
-        arrowPicUp = new Texture("arrowUp.png");
-
     }
 
-    // player input methods:
-    // pushUpButton
-    // pushDownButton
-    // pushRightButton
-    // pushLeftButton
     public void update(float deltaTime) {
         // scaling velocity by time
         velocity.scl(deltaTime);
@@ -51,7 +43,7 @@ public class Zombie {
 
     public void render(SpriteBatch batch) {
         batch.draw(zombie, position.x, position.y);
-        batch.draw(arrowPicUp, position.x, position.y + 200);
+        // batch.draw(arrowPic, position.x, position.y + 200);
     }
 
     public float getX() {
@@ -72,9 +64,8 @@ public class Zombie {
         }
         return false;
     }
-    
-    public void getArrow(){
-        
+
+    public void getArrow() {
     }
 
 //    public void reset() {
@@ -82,7 +73,6 @@ public class Zombie {
 //        // reset farther down screen
 //        zombie[i] = new (680, 30);
 //    }
-
     public void dispose() {
         zombie.dispose();
     }
