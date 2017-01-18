@@ -9,6 +9,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Arrow;
 import com.mygdx.game.Shigeru;
 import com.mygdx.game.SuicideForest;
 import com.mygdx.game.Zombie;
@@ -21,6 +22,7 @@ public class PlayState extends State {
 
     private Shigeru shigeru;
     private Zombie[] zombie;
+    private Arrow[] arrow;
     private Texture heart1;
     private Texture heart2;
     private Texture heart3;
@@ -42,6 +44,11 @@ public class PlayState extends State {
         zombie = new Zombie[3];
         for (int i = 0; i < zombie.length; i++) {
             zombie[i] = new Zombie(680, 30);
+        }
+        // creating the arrows
+        arrow = new Arrow[4];
+        for (int i = 0; i < arrow.length; i++) {
+            arrow[i] = new Arrow(680, 30);
         }
     }
 
@@ -88,7 +95,7 @@ public class PlayState extends State {
             if (zombie[i].collides(shigeru)) {
                 // end the game
                 StateManager gsm = getStateManager();
-                // pop off the game screen to go to menu
+                // pop off the game screen to go to menu                         // how to push end screen 
                 gsm.pop();
             }
         }
@@ -100,7 +107,7 @@ public class PlayState extends State {
 
         // pushUpButton
         // if arrow above zombie is UP
-        if () {
+        if (arrow.) {
             if (Gdx.input.isButtonPressed(Input.Keys.UP)) {
                 for (int i = 0; i < zombie.length; i++) {
                     zombie[i] = new Zombie(680, 30);
