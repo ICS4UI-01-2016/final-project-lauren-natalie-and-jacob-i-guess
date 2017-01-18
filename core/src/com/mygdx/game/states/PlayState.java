@@ -51,6 +51,8 @@ public class PlayState extends State {
             arrow[i] = new Arrow(680, 30);
         }
     }
+    
+    
 
     @Override
     public void render(SpriteBatch batch) {

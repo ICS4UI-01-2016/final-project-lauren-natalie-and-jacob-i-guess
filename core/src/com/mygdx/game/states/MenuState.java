@@ -30,7 +30,7 @@ public class MenuState extends State{
         super(gsm);
         bg = new Texture("MenuScreen960x720.png");
         setCameraView(SuicideForest.WIDTH, SuicideForest.HEIGHT);
-        setCameraPosition(getViewWidth()/2, getViewHeight()/2);
+        setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
         play = new Rectangle(100,100,100,100);
     }
    

@@ -19,7 +19,7 @@ public class Zombie {
     private Vector3 position;
     private Vector3 velocity;
     private Texture zombie;
-    private Texture arrowPic;
+    private Texture arrowPicUp;
     private Rectangle bounds;
     private final float MOVEMENT = 100;
 
@@ -28,7 +28,7 @@ public class Zombie {
         velocity = new Vector3(MOVEMENT, 0, 0);
         zombie = new Texture("zombieChild.png");
         bounds = new Rectangle(position.x, position.y, zombie.getWidth(), zombie.getHeight());
-        arrowPic = new Texture("arrowUp.png");
+        arrowPicUp = new Texture("arrowUp.png");
 
     }
 
@@ -51,7 +51,7 @@ public class Zombie {
 
     public void render(SpriteBatch batch) {
         batch.draw(zombie, position.x, position.y);
-        batch.draw(arrowPic, position.x, position.y + 200);
+        batch.draw(arrowPicUp, position.x, position.y + 200);
     }
 
     public float getX() {
@@ -71,6 +71,10 @@ public class Zombie {
             return true;
         }
         return false;
+    }
+    
+    public void getArrow(){
+        
     }
 
 //    public void reset() {
