@@ -109,7 +109,7 @@ public class PlayState extends State {
 
         // pushUpButton
         // if arrow above zombie is UP
-        if (arrow.) {
+        if (arrow.isUp()) {
             if (Gdx.input.isButtonPressed(Input.Keys.UP)) {
                 for (int i = 0; i < zombie.length; i++) {
                     zombie[i] = new Zombie(680, 30);
@@ -119,7 +119,7 @@ public class PlayState extends State {
 
         // pushDownButton
         // if arrow above zombie is DOWN
-        if () {
+        if (arrow.isDown()) {
             if (Gdx.input.isButtonPressed(Input.Keys.DOWN)) {
                 for (int i = 0; i < zombie.length; i++) {
                     zombie[i] = new Zombie(680, 30);
@@ -129,7 +129,7 @@ public class PlayState extends State {
 
         // pushRightButton
         // if arrow above zombie is RIGHT
-        if () {
+        if (arrow.isRight()) {
             if (Gdx.input.isButtonPressed(Input.Keys.RIGHT)) {
                 for (int i = 0; i < zombie.length; i++) {
                     zombie[i] = new Zombie(680, 30);
@@ -139,7 +139,7 @@ public class PlayState extends State {
 
         // pushLeftButton
         // if arrow above zombie is LEFT
-        if () {
+        if (arrow.isLeft()) {
             if (Gdx.input.isButtonPressed(Input.Keys.LEFT)) {
                 for (int i = 0; i < zombie.length; i++) {
                     zombie[i] = new Zombie(680, 30);
@@ -152,6 +152,8 @@ public class PlayState extends State {
     public void dispose() {
         bg.dispose();
         // shigeru.dispose();
-        zombie.dispose();
+        for (int i = 0; i < zombie.length; i++) {
+        zombie[i].dispose();
+        }
     }
 }
