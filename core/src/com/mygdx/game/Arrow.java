@@ -15,7 +15,10 @@ import com.badlogic.gdx.math.Vector3;
 public class Arrow  {
     private Vector3 position;
     private Vector3 velocity;
-    private Texture arrowPic;
+    private Texture arrowPicUp;
+    private Texture arrowPicDown;
+    private Texture arrowPicUpLeft;
+    private Texture arrowPicUpRight;
     private Rectangle bounds;
     private final float MOVEMENT = 100;
     
