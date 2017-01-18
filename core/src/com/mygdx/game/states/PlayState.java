@@ -44,6 +44,8 @@ public class PlayState extends State {
             zombie[i] = new Zombie(680, 30);
         }
     }
+    
+    
 
     @Override
     public void render(SpriteBatch batch) {
