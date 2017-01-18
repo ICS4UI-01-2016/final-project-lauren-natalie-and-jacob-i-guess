@@ -4,8 +4,11 @@
  */
 package com.mygdx.game.states;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.game.SuicideForest;
 
 /**
  *
@@ -14,11 +17,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class CreditState extends State {
 
     private Texture bg;
+    private Rectangle back;
 
     public CreditState(StateManager gsm) {
         super(gsm);
-        bg = new Texture("MenuScreen960x720.png");
-
+        bg = new Texture("creditScreen.jpg");
+        setCameraView(SuicideForest.WIDTH, SuicideForest.HEIGHT);
+        setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
     }
 
     @Override
@@ -31,16 +36,19 @@ public class CreditState extends State {
 
     @Override
     public void update(float deltaTime) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void handleInput() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (Gdx.input.justTouched()) {
+            StateManager gsm = getStateManager();
+            gsm.push(new MenuState(gsm));
+        }
     }
 
     @Override
     public void dispose() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        bg.dispose();
     }
 }
