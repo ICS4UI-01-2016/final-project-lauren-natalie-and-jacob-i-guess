@@ -65,9 +65,6 @@ public class Zombie {
         return false;
     }
 
-    public void getArrow() {
-    }
-
 //    public void reset() {
 //        // have zombie deleted from screen
 //        // reset farther down screen
@@ -76,4 +73,6 @@ public class Zombie {
     public void dispose() {
         zombie.dispose();
     }
+
+    
 }
