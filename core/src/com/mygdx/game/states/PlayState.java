@@ -96,7 +96,7 @@ public class PlayState extends State {
                 // end the game
                 StateManager gsm = getStateManager();
                 // pop off the game screen to go to menu                         // how to push end screen 
-                gsm.pop();
+                gsm.set(new EndScreen(gsm));
             }
         }
     }

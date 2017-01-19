@@ -40,9 +40,10 @@ public class EndScreen extends State {
 
     @Override
     public void handleInput() {
+        // if click on screen, send back to menu
         if (Gdx.input.justTouched()) {
             StateManager gsm = getStateManager();
-            gsm.push(new PlayState(gsm));
+            gsm.pop();
         }
     }
 
