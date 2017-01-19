@@ -9,7 +9,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.Arrow;
+import com.mygdx.game.ArrowLauren;
 import com.mygdx.game.Shigeru;
 import com.mygdx.game.SuicideForest;
 import com.mygdx.game.Zombie;
@@ -22,7 +22,7 @@ public class PlayState extends State {
 
     private Shigeru shigeru;
     private Zombie[] zombie;
-    private Arrow[] arrow;
+    private ArrowLauren[] arrow;
     private Texture heart1;
     private Texture heart2;
     private Texture heart3;
@@ -46,13 +46,11 @@ public class PlayState extends State {
             zombie[i] = new Zombie(680, 30);
         }
         // creating the arrows
-        arrow = new Arrow[4];
+        arrow = new ArrowLauren[4];
         for (int i = 0; i < arrow.length; i++) {
-            arrow[i] = new Arrow(680, 30);
+            arrow[i] = new ArrowLauren(680, 30);
         }
     }
-    
-    
 
     @Override
     public void render(SpriteBatch batch) {
@@ -107,45 +105,45 @@ public class PlayState extends State {
     public void handleInput() {
         // handle any player input changes
 
-        // pushUpButton
-        // if arrow above zombie is UP
-        if (arrow.isUp()) {
-            if (Gdx.input.isButtonPressed(Input.Keys.UP)) {
-                for (int i = 0; i < zombie.length; i++) {
-                    zombie[i] = new Zombie(680, 30);
-                }
-            }
-        }
-
-        // pushDownButton
-        // if arrow above zombie is DOWN
-        if (arrow.isDown()) {
-            if (Gdx.input.isButtonPressed(Input.Keys.DOWN)) {
-                for (int i = 0; i < zombie.length; i++) {
-                    zombie[i] = new Zombie(680, 30);
-                }
-            }
-        }
-
-        // pushRightButton
-        // if arrow above zombie is RIGHT
-        if (arrow.isRight()) {
-            if (Gdx.input.isButtonPressed(Input.Keys.RIGHT)) {
-                for (int i = 0; i < zombie.length; i++) {
-                    zombie[i] = new Zombie(680, 30);
-                }
-            }
-        }
-
-        // pushLeftButton
-        // if arrow above zombie is LEFT
-        if (arrow.isLeft()) {
-            if (Gdx.input.isButtonPressed(Input.Keys.LEFT)) {
-                for (int i = 0; i < zombie.length; i++) {
-                    zombie[i] = new Zombie(680, 30);
-                }
-            }
-        }
+//        // pushUpButton
+//        // if arrow above zombie is UP
+//        if (arrow.isUp()) {
+//            if (Gdx.input.isButtonPressed(Input.Keys.UP)) {
+//                for (int i = 0; i < zombie.length; i++) {
+//                    zombie[i] = new Zombie(680, 30);
+//                }
+//            }
+//        }
+//
+//        // pushDownButton
+//        // if arrow above zombie is DOWN
+//        if (arrow.isDown()) {
+//            if (Gdx.input.isButtonPressed(Input.Keys.DOWN)) {
+//                for (int i = 0; i < zombie.length; i++) {
+//                    zombie[i] = new Zombie(680, 30);
+//                }
+//            }
+//        }
+//
+//        // pushRightButton
+//        // if arrow above zombie is RIGHT
+//        if (arrow.isRight()) {
+//            if (Gdx.input.isButtonPressed(Input.Keys.RIGHT)) {
+//                for (int i = 0; i < zombie.length; i++) {
+//                    zombie[i] = new Zombie(680, 30);
+//                }
+//            }
+//        }
+//
+//        // pushLeftButton
+//        // if arrow above zombie is LEFT
+//        if (arrow.isLeft()) {
+//            if (Gdx.input.isButtonPressed(Input.Keys.LEFT)) {
+//                for (int i = 0; i < zombie.length; i++) {
+//                    zombie[i] = new Zombie(680, 30);
+//                }
+//            }
+//        }
     }
 
     @Override
