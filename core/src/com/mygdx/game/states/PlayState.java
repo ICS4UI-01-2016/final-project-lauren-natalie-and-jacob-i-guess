@@ -9,7 +9,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.ArrowLauren;
+import com.mygdx.game.Arrow;
 import com.mygdx.game.Shigeru;
 import com.mygdx.game.SuicideForest;
 import com.mygdx.game.Zombie;
@@ -22,7 +22,7 @@ public class PlayState extends State {
 
     private Shigeru shigeru;
     private Zombie[] zombie;
-    private ArrowLauren[] arrow;
+    private Arrow[] arrow;
     private Texture heart1;
     private Texture heart2;
     private Texture heart3;
@@ -46,9 +46,9 @@ public class PlayState extends State {
             zombie[i] = new Zombie(680, 30);
         }
         // creating the arrows
-        arrow = new ArrowLauren[4];
+        arrow = new Arrow[4];
         for (int i = 0; i < arrow.length; i++) {
-            arrow[i] = new ArrowLauren(680, 30);
+            arrow[i] = new Arrow(680, 30);
         }
     }
 
