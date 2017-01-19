@@ -31,16 +31,19 @@ public class MenuState extends State{
         bg = new Texture("MenuScreen960x720.png");
         setCameraView(SuicideForest.WIDTH, SuicideForest.HEIGHT);
         setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
+        //create parameter for the "button"
         play = new Rectangle(100,100,100,100);
     }
    
     @Override
     public void render(SpriteBatch batch) {
         batch.setProjectionMatrix(getCombinedCamera());
-        batch.begin();       
+        batch.begin();   
+        //draw background image
         batch.draw(bg, 0, 0, getViewWidth(), getViewHeight());
         batch.end();
         
+        //create shapeRenderer to create the button so user can move between menu screens
         shapeRenderer.setProjectionMatrix(getCombinedCamera());
         shapeRenderer.begin(ShapeType.Line);
         shapeRenderer.rect(0,0,10,10);
@@ -55,6 +58,7 @@ public class MenuState extends State{
 
     @Override
     public void handleInput() {
+        //Check if parameter is clicked on, to screen menu screens
         if(Gdx.input.isTouched()){
             StateManager gsm = getStateManager();
             gsm.push(new PlayState(gsm));
@@ -63,6 +67,7 @@ public class MenuState extends State{
 
     @Override
     public void dispose() {
+        //remove background image so that game runs smoother
         bg.dispose();
     }
 

@@ -26,6 +26,7 @@ public class CreditState extends State {
         bg1 = new Texture("creditScreen.jpg");
         setCameraView(SuicideForest.WIDTH, SuicideForest.HEIGHT);
         setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
+        //create parameter for the "button"
         back = new Rectangle(10,10,10,10);
     }
 
@@ -33,9 +34,11 @@ public class CreditState extends State {
     public void render(SpriteBatch batch) {
         batch.setProjectionMatrix(getCombinedCamera());
         batch.begin();
+        //draw background image
         batch.draw(bg1, 0, 0, getViewWidth(), getViewHeight());
         batch.end();
         
+        //create shapeRenderer to create the button so user can move between menu screens
         shapeRenderer.setProjectionMatrix(getCombinedCamera());
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         shapeRenderer.rect(0,0,10,10);
@@ -49,6 +52,7 @@ public class CreditState extends State {
 
     @Override
     public void handleInput() {
+        //Check if parameter is clicked on, to screen menu screens
         if (Gdx.input.isTouched()) {
             StateManager gsm = getStateManager();
             gsm.push(new MenuState(gsm));
@@ -57,6 +61,7 @@ public class CreditState extends State {
 
     @Override
     public void dispose() {
+        //remove background image so that game runs smoother
         bg1.dispose();
     }
 }
