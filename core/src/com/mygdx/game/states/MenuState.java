@@ -6,6 +6,7 @@
 package com.mygdx.game.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -23,6 +24,7 @@ public class MenuState extends State{
     private float buttonx = 0;
     private float buttony = 0;
     private ShapeRenderer shapeRenderer = new ShapeRenderer();
+    private Music music;
     
     
     
@@ -33,6 +35,9 @@ public class MenuState extends State{
         setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
         //create parameter for the "button"
         play = new Rectangle(100,100,100,100);
+        //create music and play it
+        Music music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
+        music.play();
     }
    
     @Override
@@ -69,6 +74,8 @@ public class MenuState extends State{
     public void dispose() {
         //remove background image so that game runs smoother
         bg.dispose();
+        //remove music so that it stops when changing to another screen
+        music.dispose();
     }
 
 }

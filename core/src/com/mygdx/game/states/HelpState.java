@@ -5,6 +5,7 @@
 package com.mygdx.game.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -20,6 +21,7 @@ public class HelpState extends State {
     private Texture bg2;
     private Rectangle back;
     private ShapeRenderer shapeRenderer = new ShapeRenderer();
+    private Music music2;
 
     public HelpState(StateManager gsm) {
         super(gsm);
@@ -28,6 +30,9 @@ public class HelpState extends State {
         setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
         //create parameter for the "button"
         back = new Rectangle(10,10,10,10);
+        //create music and play it
+        Music music2 = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
+        music2.play();
     }
 
     @Override
@@ -63,5 +68,7 @@ public class HelpState extends State {
     public void dispose() {
         //remove background image so that game runs smoother
         bg2.dispose();
+         //remove music so that it stops when changing to another screen
+        music2.dispose();
     }
 }
