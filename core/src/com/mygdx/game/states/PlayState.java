@@ -45,11 +45,7 @@ public class PlayState extends State {
         for (int i = 0; i < zombie.length; i++) {
             zombie[i] = new Zombie(680, 30);
         }
-        // creating the arrows
-        arrow = new Arrow[4];
-        for (int i = 0; i < arrow.length; i++) {
-            arrow[i] = new Arrow(680, 30);
-        }
+        
     }
 
     @Override
@@ -70,6 +66,12 @@ public class PlayState extends State {
         // draw the zombie
         for (int i = 0; i < zombie.length; i++) {
             zombie[i].render(batch);
+        }
+        
+        // creating the arrows
+        arrow = new Arrow[4];
+        for (int i = 0; i < arrow.length; i++) {
+            arrow[i] = new Arrow(680, 30);
         }
         // end the stuff to draw
         batch.end();

@@ -32,19 +32,19 @@ public class Arrow {
 
         random = (int) (Math.random() * 3);
 
-        if (random == 1) {
+        if (random == 0) {
             return arrowUp;
         }
 
-        if (random == 2) {
+        if (random == 1) {
             return arrowRight;
         }
 
-        if (random == 3) {
+        if (random == 2) {
             return arrowLeft;
         }
 
-        if (random == 4) {
+        if (random == 3) {
             return arrowDown;
         }
         return null;
@@ -52,36 +52,28 @@ public class Arrow {
     }
 
     public boolean isUp() {
-        if (random == 1) {
-
-
+        if (random == 0) {
             return true;
         }
         return false;
     }
 
     public boolean isRight() {
-        if (random == 2) {
-
-
+        if (random == 1) {
             return true;
         }
         return false;
     }
 
     public boolean isLeft() {
-        if (random == 3) {
-
-
+        if (random == 2) {
             return true;
         }
         return false;
     }
 
     public boolean isDown() {
-        if (random == 4) {
-
-
+        if (random == 3) {
             return true;
         }
         return false;
@@ -96,22 +88,19 @@ public class Arrow {
     }
 
     public void render(SpriteBatch batch) {
-        if (random == 1) {
+        if (random == 0) {
             batch.draw(arrowUp, getX(), getY() + 200);
         }
 
-
-        if (random == 2) {
+        if (random == 1) {
             batch.draw(arrowRight, getX(), getY() + 200);
         }
 
-
-        if (random == 3) {
+        if (random == 2) {
             batch.draw(arrowLeft, getX(), getY() + 200);
         }
 
-
-        if (random == 4) {
+        if (random == 3) {
             batch.draw(arrowDown, getX(), getY() + 200);
         }
 
