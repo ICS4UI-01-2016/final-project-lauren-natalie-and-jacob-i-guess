@@ -54,12 +54,6 @@ public class MenuState extends State {
         batch.draw(bg, 0, 0, getViewWidth(), getViewHeight());
         batch.end();
 
-        //create shapeRenderer to create the button so user can move between menu screens
-        shapeRenderer.setProjectionMatrix(getCombinedCamera());
-        shapeRenderer.begin(ShapeType.Line);
-        shapeRenderer.rect(290, 170, 378, 150);
-        shapeRenderer.end();
-
     }
 
     @Override
