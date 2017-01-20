@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.SuicideForest;
 
 /**
@@ -64,7 +65,7 @@ public class CreditState extends State {
             //convert that point to came coordinates
             unproject(touch);
             //check if button is pressed
-            float buttonX = getViewWidth() / 2 - play.getWidth() / 2;
+            float buttonX = getViewWidth() / 2 - back.getWidth() / 2;
             float buttonY = getViewHeight() / 2;
             float backButtonX = 0;
             float backButtonY = 0;

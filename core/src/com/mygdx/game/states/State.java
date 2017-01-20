@@ -8,6 +8,7 @@ package com.mygdx.game.states;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Vector3;
 
 /**
  *
@@ -71,6 +72,8 @@ public abstract class State {
         return cam.viewportHeight;
     }
     
-    
+    public void unproject(Vector3 touch){
+        cam.unproject(touch);
+    }
     
 }

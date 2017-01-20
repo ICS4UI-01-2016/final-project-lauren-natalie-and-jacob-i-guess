@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.SuicideForest;
 
 /**
@@ -68,8 +69,7 @@ public class MenuState extends State {
 
             //get the mouse click/touch position
             Vector3 touch = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-            //convert that point to came coordinates
-            unproject(touch);
+      
             //check if button is pressed
             float buttonX = getViewWidth() / 2 - play.getWidth() / 2;
             float buttonY = getViewHeight() / 2;
