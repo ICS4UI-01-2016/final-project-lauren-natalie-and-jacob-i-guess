@@ -6,9 +6,12 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Array;
 
 /**
  *
@@ -20,16 +23,27 @@ public class Zombie {
     private Vector3 velocity;
     private Texture zombie;
     private Rectangle bounds;
+    private float statetime = 0;
     private final float MOVEMENT = 100;
+    private Animation zombiewalk;
 
     public Zombie(int x, int y) {
         position = new Vector3(x, y, 0);
         velocity = new Vector3(MOVEMENT, 0, 0);
         zombie = new Texture("zombieChild.png");
         bounds = new Rectangle(position.x, position.y, zombie.getWidth(), zombie.getHeight());
+
+
+        Array<TextureRegion> frames = new Array<TextureRegion>();
+        for (int i = 1; i <= 4; i++) {
+            frames.add(new TextureRegion(new Texture("zombieChild #" + i + ".png")));  // FIX THIS
+        }
+        zombiewalk = new Animation(0.2f, frames);
+        zombiewalk.setPlayMode(Animation.PlayMode.LOOP);
+        bounds = new Rectangle(position.x, position.y, zombiewalk.getKeyFrames()[0].getTexture().getWidth(), zombiewalk.getKeyFrames()[0].getTexture().getHeight());
     }
 
-    public void update(float deltaTime) {
+public void update(float deltaTime) {
         // scaling velocity by time
         velocity.scl(deltaTime);
         // adding velocity to position
@@ -42,7 +56,7 @@ public class Zombie {
     }
 
     public void render(SpriteBatch batch) {
-        batch.draw(zombie, position.x, position.y);
+        batch.draw(zombiewalk.getKeyFrame(statetime), position.x, position.y);
         // batch.draw(arrowPic, position.x, position.y + 200);
     }
 
@@ -73,6 +87,4 @@ public class Zombie {
     public void dispose() {
         zombie.dispose();
     }
-
-    
 }
