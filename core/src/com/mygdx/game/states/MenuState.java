@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.SuicideForest;
 
@@ -35,8 +36,11 @@ public class MenuState extends State {
         bg = new Texture("MenuScreen960x720.png");
         setCameraView(SuicideForest.WIDTH, SuicideForest.HEIGHT);
         setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
-        //create parameter for the "button"
-        play = new Rectangle(100, 100, 100, 100);
+        //create parameter for the "button"s
+        play = new Rectangle(290, 170, 378, 150);
+        help = new Rectangle(180, 38, 245, 90);       
+        credits = new Rectangle(535, 35, 245, 90);      
+       
         //create music and play it
         Music music = Gdx.audio.newMusic(Gdx.files.internal("OpeningMusic.mp3"));
         music.play();
@@ -53,7 +57,7 @@ public class MenuState extends State {
         //create shapeRenderer to create the button so user can move between menu screens
         shapeRenderer.setProjectionMatrix(getCombinedCamera());
         shapeRenderer.begin(ShapeType.Line);
-        shapeRenderer.rect(0, 0, 10, 10);
+        shapeRenderer.rect(290, 170, 378, 150);
         shapeRenderer.end();
 
     }
@@ -65,29 +69,23 @@ public class MenuState extends State {
     @Override
     public void handleInput() {
         //Check if parameter is clicked on, to screen menu screens
-        if (Gdx.input.isTouched()) {
+        if (Gdx.input.justTouched()) {
 
             //get the mouse click/touch position
-            Vector3 touch = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+            Vector3 touch = new Vector3(Gdx.input.getX(), Gdx.input.getY(),0);
       
+            unproject(touch);
             //check if button is pressed
-            float buttonX = getViewWidth() / 2 - play.getWidth() / 2;
-            float buttonY = getViewHeight() / 2;
-
-                   if (touch.x > buttonX && touch.x < buttonX + play.getWidth()
-                    && touch.y > buttonY && touch.y < buttonY + play.getHeight()) {
-
+            if(play.contains(touch.x, touch.y)){
                 StateManager gsm = getStateManager();
                 gsm.push(new PlayState(gsm));
 
-            } else if (touch.x > buttonX && touch.x < buttonX + help.getWidth()
-                    && touch.y > buttonY && touch.y < buttonY + help.getHeight()) {
+            } else if (help.contains(touch.x, touch.y)) {
 
                 StateManager gsm = getStateManager();
                 gsm.push(new HelpState(gsm));
 
-            } else if (touch.x > buttonX && touch.x < buttonX + credits.getWidth()
-                    && touch.y > buttonY && touch.y < buttonY + credits.getHeight()) {
+            } else if (credits.contains(touch.x, touch.y)) {
 
                 StateManager gsm = getStateManager();
                 gsm.push(new CreditState(gsm));

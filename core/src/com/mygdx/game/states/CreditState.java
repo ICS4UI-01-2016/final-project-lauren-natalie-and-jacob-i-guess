@@ -30,7 +30,7 @@ public class CreditState extends State {
         setCameraView(SuicideForest.WIDTH, SuicideForest.HEIGHT);
         setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
         //create parameter for the "button"
-        back = new Rectangle(10, 10, 10, 10);
+        back = new Rectangle(170, 50, 160, 83);
         //create music and play it
         Music music1 = Gdx.audio.newMusic(Gdx.files.internal("OpeningMusic.mp3"));
         music1.play();
@@ -44,11 +44,6 @@ public class CreditState extends State {
         batch.draw(bg1, 0, 0, getViewWidth(), getViewHeight());
         batch.end();
 
-        //create shapeRenderer to create the button so user can move between menu screens
-        shapeRenderer.setProjectionMatrix(getCombinedCamera());
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        shapeRenderer.rect(0, 0, 10, 10);
-        shapeRenderer.end();
 
 
     }
@@ -59,19 +54,13 @@ public class CreditState extends State {
 
     @Override
     public void handleInput() {
-        if (Gdx.input.isTouched()) {
+        if (Gdx.input.justTouched()) {
             //get the mouse click/touch position
             Vector3 touch = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
             //convert that point to came coordinates
             unproject(touch);
-            //check if button is pressed
-            float buttonX = getViewWidth() / 2 - back.getWidth() / 2;
-            float buttonY = getViewHeight() / 2;
-            float backButtonX = 0;
-            float backButtonY = 0;
-            if (touch.x > buttonX && touch.x < buttonX + back.getWidth()
-                    && touch.y > buttonY && touch.y < buttonY + back.getHeight()) {
 
+           if(back.contains(touch.x, touch.y)){
                 StateManager gsm = getStateManager();
                 gsm.push(new MenuState(gsm));
 
