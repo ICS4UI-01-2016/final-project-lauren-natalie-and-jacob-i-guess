@@ -22,10 +22,10 @@ public class Arrow {
     private Zombie zombie;
 
     public Arrow(int x, int y) {
-        arrowUp = new Texture("arrowUp");
-        arrowRight = new Texture("arrowRight");
-        arrowLeft = new Texture("arrowLeft");
-        arrowDown = new Texture("arrowDown");
+        arrowUp = new Texture("arrowUp.png");
+        arrowRight = new Texture("arrowRight.png");
+        arrowLeft = new Texture("arrowLeft.png");
+        arrowDown = new Texture("arrowDown.png");
     }
 
     private Texture arrowGenerator() {
