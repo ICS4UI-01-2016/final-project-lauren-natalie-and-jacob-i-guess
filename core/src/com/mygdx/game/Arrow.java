@@ -88,11 +88,11 @@ public class Arrow {
     }
 
     public float getX() {
-        return zombie.getX();
+        return position.x + 10;
     }
 
     public float getY() {
-        return zombie.getY();
+        return 45;
     }
 
     public void render(SpriteBatch batch) {
