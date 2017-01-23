@@ -7,6 +7,7 @@ package com.mygdx.game.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Arrow;
@@ -27,6 +28,7 @@ public class PlayState extends State {
     private Texture heart2;
     private Texture heart3;
     private Texture bg;
+    private Music music;
     private final float CAM_X_OFFSET = 400;
 
     public PlayState(StateManager sm) {
@@ -45,6 +47,10 @@ public class PlayState extends State {
         for (int i = 0; i < zombie.length; i++) {
             zombie[i] = new Zombie(680, 30);
         }
+        
+         //create music and play it
+        Music music = Gdx.audio.newMusic(Gdx.files.internal("GameplayMusic.mp3"));
+        music.play();
         
     }
 
@@ -151,9 +157,12 @@ public class PlayState extends State {
     @Override
     public void dispose() {
         bg.dispose();
-        // shigeru.dispose();
+        shigeru.dispose();
         for (int i = 0; i < zombie.length; i++) {
         zombie[i].dispose();
+        //stop the music from playing
+        music.dispose();
+        
         }
     }
 }
