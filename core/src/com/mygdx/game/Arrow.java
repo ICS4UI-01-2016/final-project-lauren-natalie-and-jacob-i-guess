@@ -6,6 +6,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector3;
 
 /**
  *
@@ -20,13 +21,20 @@ public class Arrow {
     public Texture arrowLeft;
     public Texture arrowDown;
     private Zombie zombie;
+    private Vector3 position;
+    private Vector3 velocity;
+    private final float MOVEMENT = 100;
 
     public Arrow(int x, int y) {
         arrowUp = new Texture("arrowUp.png");
         arrowRight = new Texture("arrowRight.png");
         arrowLeft = new Texture("arrowLeft.png");
-        arrowDown = new Texture("arrowDown.png");
+        arrowDown = new Texture("arrowDown.png ");
+        position = new Vector3(x, y, 0);
+        velocity = new Vector3(MOVEMENT, 0, 0);
     }
+    
+    
 
     private Texture arrowGenerator() {
 
@@ -105,4 +113,6 @@ public class Arrow {
         }
 
     }
+    
+    
 }
