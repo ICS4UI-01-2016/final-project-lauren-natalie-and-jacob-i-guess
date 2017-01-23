@@ -42,7 +42,7 @@ public class MenuState extends State {
         credits = new Rectangle(535, 35, 245, 90);      
        
         //create music and play it
-        Music music = Gdx.audio.newMusic(Gdx.files.internal("OpeningMusic.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("OpeningMusic.mp3"));
         music.play();
     }
 
@@ -71,16 +71,17 @@ public class MenuState extends State {
             unproject(touch);
             //check if button is pressed
             if(play.contains(touch.x, touch.y)){
+                music.pause();
                 StateManager gsm = getStateManager();
                 gsm.push(new PlayState(gsm));
 
             } else if (help.contains(touch.x, touch.y)) {
-
+              music.pause();
                 StateManager gsm = getStateManager();
                 gsm.push(new HelpState(gsm));
 
             } else if (credits.contains(touch.x, touch.y)) {
-
+               music.pause();
                 StateManager gsm = getStateManager();
                 gsm.push(new CreditState(gsm));
 

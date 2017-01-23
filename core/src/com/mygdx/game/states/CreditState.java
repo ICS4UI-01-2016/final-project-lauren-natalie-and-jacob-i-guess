@@ -32,7 +32,7 @@ public class CreditState extends State {
         //create parameter for the "button"
         back = new Rectangle(170, 50, 160, 83);
         //create music and play it
-        Music music1 = Gdx.audio.newMusic(Gdx.files.internal("OpeningMusic.mp3"));
+        music1 = Gdx.audio.newMusic(Gdx.files.internal("OpeningMusic.mp3"));
         music1.play();
     }
 
@@ -61,6 +61,7 @@ public class CreditState extends State {
             unproject(touch);
 
            if(back.contains(touch.x, touch.y)){
+                music1.pause();
                 StateManager gsm = getStateManager();
                 gsm.push(new MenuState(gsm));
 
