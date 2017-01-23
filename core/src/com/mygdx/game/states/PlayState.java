@@ -119,15 +119,15 @@ public class PlayState extends State {
     public void handleInput() {
         // handle any player input changes
 
-//        // pushUpButton
-//        // if arrow above zombie is UP
-//        if (arrow.isUp()) {
-//            if (Gdx.input.isButtonPressed(Input.Keys.UP)) {
-//                for (int i = 0; i < zombie.length; i++) {
-//                    zombie[i] = new Zombie(680, 30);
-//                }
-//            }
-//        }
+        // pushUpButton
+        // if arrow above zombie is UP
+        if (arrow[i].isUp() == true) {                                          // fix 'i'
+            if (Gdx.input.isButtonPressed(Input.Keys.UP)) {
+                for (int i = 0; i < zombie.length; i++) {
+                    zombie[i] = new Zombie(680, 30);
+                }
+            }
+        }
 //
 //        // pushDownButton
 //        // if arrow above zombie is DOWN

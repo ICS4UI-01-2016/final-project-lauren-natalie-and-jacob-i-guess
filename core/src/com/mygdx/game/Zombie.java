@@ -31,7 +31,7 @@ public class Zombie {
         velocity = new Vector3(MOVEMENT, 0, 0);
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
-        for (int i = 1; i <= 2; i++) {                                              // FIX THIS
+        for (int i = 1; i <= 2; i++) {                                              // FIX THIS?
             frames.add(new TextureRegion(new Texture("ZombieChild" + i + ".png")));
         }
         zombiewalk = new Animation(0.2f, frames);
