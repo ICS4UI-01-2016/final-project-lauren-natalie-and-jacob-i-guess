@@ -32,7 +32,7 @@ public class HelpState extends State {
         //create parameter for the "button"
         back = new Rectangle(170, 50, 160, 83);
         //create music and play it
-        Music music2 = Gdx.audio.newMusic(Gdx.files.internal("OpeningMusic.mp3"));
+        music2 = Gdx.audio.newMusic(Gdx.files.internal("OpeningMusic.mp3"));
         music2.play();
     }
 
@@ -59,6 +59,7 @@ public class HelpState extends State {
             unproject(touch);
  
            if(back.contains(touch.x, touch.y)){
+               music2.pause();
                 StateManager gsm = getStateManager();
                 gsm.push(new MenuState(gsm));
 
