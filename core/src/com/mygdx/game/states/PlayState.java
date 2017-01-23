@@ -48,6 +48,12 @@ public class PlayState extends State {
             zombie[i] = new Zombie(680, 30);
         }
         
+        // creating the arrows
+        arrow = new Arrow[4];
+        for (int i = 0; i < arrow.length; i++) {
+            arrow[i] = new Arrow(680, 30);
+        }
+        
          //create music and play it
         Music music = Gdx.audio.newMusic(Gdx.files.internal("GameplayMusic.mp3"));
         music.play();
@@ -74,11 +80,11 @@ public class PlayState extends State {
             zombie[i].render(batch);
         }
         
-        // creating the arrows
-        arrow = new Arrow[4];
+        // draw the arrows
         for (int i = 0; i < arrow.length; i++) {
-            arrow[i] = new Arrow(680, 30);
+            arrow[i].render(batch);
         }
+        
         // end the stuff to draw
         batch.end();
     }
