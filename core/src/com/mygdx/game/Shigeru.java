@@ -21,7 +21,6 @@ public class Shigeru {
 
     private Vector3 position;
     private Vector3 velocity;
-    private Texture shigeruPic;
     private Rectangle bounds;
     private final float MOVEMENT = 100;
     private float statetime = 0;
@@ -72,6 +71,6 @@ public class Shigeru {
     }
 
     public void dispose() {
-        // shigeruPic.dispose();
+        // shigeRun.dispose();
     }
 }

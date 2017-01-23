@@ -5,6 +5,7 @@
 package com.mygdx.game.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -18,12 +19,17 @@ import com.mygdx.game.SuicideForest;
 public class EndScreen extends State {
 
     private Texture es;
+    private Music music;
 
     public EndScreen(StateManager gsm) {
         super(gsm);
         es = new Texture("endScreen.png");
         setCameraView(SuicideForest.WIDTH, SuicideForest.HEIGHT);
         setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
+        
+         //create music and play it
+        Music music = Gdx.audio.newMusic(Gdx.files.internal("DeathMusic.mp3"));
+        music.play();
     }
 
     @Override
@@ -50,5 +56,7 @@ public class EndScreen extends State {
     @Override
     public void dispose() {
         es.dispose();
+        //stop playing the music
+        music.dispose();
     }
 }
