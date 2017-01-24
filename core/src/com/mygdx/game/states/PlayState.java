@@ -47,17 +47,17 @@ public class PlayState extends State {
         for (int i = 0; i < zombie.length; i++) {
             zombie[i] = new Zombie(680, 30);
         }
-        
+
         // creating the arrows
         arrow = new Arrow[4];
         for (int i = 0; i < arrow.length; i++) {
             arrow[i] = new Arrow(680, 30);
         }
-        
-         //create music and play it
+
+        //create music and play it
         musicPlay = Gdx.audio.newMusic(Gdx.files.internal("GameplayMusic.mp3"));
         musicPlay.play();
-        
+
     }
 
     @Override
@@ -79,12 +79,12 @@ public class PlayState extends State {
         for (int i = 0; i < zombie.length; i++) {
             zombie[i].render(batch);
         }
-        
+
         // draw the arrows
         for (int i = 0; i < arrow.length; i++) {
             arrow[i].render(batch);
         }
-        
+
         // end the stuff to draw
         batch.end();
     }
@@ -120,14 +120,21 @@ public class PlayState extends State {
         // handle any player input changes
 
         // pushUpButton
-        // if arrow above zombie is UP
-        if (arrow[i].isUp() == true) {                                          // fix 'i'
-            if (Gdx.input.isButtonPressed(Input.Keys.UP)) {
-                for (int i = 0; i < zombie.length; i++) {
-                    zombie[i] = new Zombie(680, 30);
+        for (int i = 0; i < arrow.length; i++) {
+            // if arrow above zombie is UP
+            if (arrow[i].isUp() == true) {
+                if (Gdx.input.isButtonPressed(Input.Keys.UP)) {
+                    System.out.println("here");
+                    for (int j = 0; j < zombie.length; j++) {
+                        // makes current zombie texture null
+                        zombie[j] = null;
+                        // create new zombie at spawn
+                        zombie[j] = new Zombie(680, 30);
+                    }
                 }
             }
         }
+        
 //
 //        // pushDownButton
 //        // if arrow above zombie is DOWN
@@ -165,10 +172,10 @@ public class PlayState extends State {
         bg.dispose();
         shigeru.dispose();
         for (int i = 0; i < zombie.length; i++) {
-        zombie[i].dispose();
-        //stop the music from playing
-        musicPlay.dispose();
-        
+            zombie[i].dispose();
+            //stop the music from playing
+            musicPlay.dispose();
+
         }
     }
 }
