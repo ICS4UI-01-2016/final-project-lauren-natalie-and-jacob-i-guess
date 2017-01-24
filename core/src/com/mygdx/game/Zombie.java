@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.Array;
  * @author halll7908
  */
 public class Zombie {
+    static int randNum;
 
     private Vector3 position;
     private Vector3 velocity;
@@ -26,10 +27,20 @@ public class Zombie {
     private final float MOVEMENT = 100;
     private Animation zombiewalk;
     private Arrow arrow;
+    // arrow textures
+    public Texture arrowUp;
+    public Texture arrowRight;
+    public Texture arrowLeft;
+    public Texture arrowDown;
 
     public Zombie(int x, int y) {
         position = new Vector3(x, y, 0);
         velocity = new Vector3(MOVEMENT, 0, 0);
+        // arrows
+        arrowUp = new Texture("arrowUp.png");
+        arrowRight = new Texture("arrowRight.png");
+        arrowLeft = new Texture("arrowLeft.png");
+        arrowDown = new Texture("arrowDown.png ");
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
         for (int i = 1; i <= 2; i++) {                                              // FIX THIS?
@@ -41,7 +52,7 @@ public class Zombie {
     }
 
     public void randNum(){
-        int random = (int) (Math.random()*3);
+        randNum = (int) (Math.random()*3);
     }
     
     public void arrow(){
@@ -64,6 +75,22 @@ public class Zombie {
     public void render(SpriteBatch batch) {
         batch.draw(zombiewalk.getKeyFrame(statetime), position.x, position.y);
         // batch.draw(arrowPic, position.x, position.y + 200);
+        
+        if (randNum == 0) {
+            batch.draw(arrowUp, getX(), getY() + 200);
+        }
+
+        if (randNum == 1) {
+            batch.draw(arrowRight, getX(), getY() + 200);
+        }
+
+        if (randNum == 2) {
+            batch.draw(arrowLeft, getX(), getY() + 200);
+        }
+
+        if (randNum == 3) {
+            batch.draw(arrowDown, getX(), getY() + 200);
+        }
     }
 
     public float getX() {
