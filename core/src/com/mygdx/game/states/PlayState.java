@@ -45,7 +45,7 @@ public class PlayState extends State {
         // creating the zombies
         zombie = new Zombie[3];
         for (int i = 0; i < zombie.length; i++) {
-            zombie[i] = new Zombie(680, 30);
+            zombie[i] = new Zombie(680 + 150 * i, 30);
         }
 
         // creating the arrows
@@ -123,7 +123,23 @@ public class PlayState extends State {
         for (int i = 0; i < arrow.length; i++) {
             // if arrow above zombie is UP
             if (arrow[i].isUp() == true) {
-                if (Gdx.input.isButtonPressed(Input.Keys.UP)) {
+                if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+                    for (int j = 0; j < zombie.length; j++) {
+                        System.out.println("here");
+                        // makes current zombie texture null
+                        zombie[j] = null;
+                        // create new zombie at spawn
+                        zombie[j] = new Zombie(680, 30);
+                    }
+                }
+            }
+        }
+
+        // pushDownButton
+        for (int i = 0; i < arrow.length; i++) {
+            // if arrow above zombie is UP
+            if (arrow[i].isUp() == true) {
+                if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
                     System.out.println("here");
                     for (int j = 0; j < zombie.length; j++) {
                         // makes current zombie texture null
@@ -134,18 +150,7 @@ public class PlayState extends State {
                 }
             }
         }
-        
-//
-//        // pushDownButton
-//        // if arrow above zombie is DOWN
-//        if (arrow.isDown()) {
-//            if (Gdx.input.isButtonPressed(Input.Keys.DOWN)) {
-//                for (int i = 0; i < zombie.length; i++) {
-//                    zombie[i] = new Zombie(680, 30);
-//                }
-//            }
-//        }
-//
+
 //        // pushRightButton
 //        // if arrow above zombie is RIGHT
 //        if (arrow.isRight()) {

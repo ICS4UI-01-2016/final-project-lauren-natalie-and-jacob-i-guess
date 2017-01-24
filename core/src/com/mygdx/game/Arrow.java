@@ -34,29 +34,20 @@ public class Arrow {
         velocity = new Vector3(MOVEMENT, 0, 0);
     }
     
-    
-
-    private Texture arrowGenerator() {
-
-        random = (int) (Math.random() * 3);
-
-        if (random == 0) {
+    public void getDirection(){
+        if (zombie.randNum == 0){
             return arrowUp;
         }
-
-        if (random == 1) {
+        if (zombie.randNum == 1){
             return arrowRight;
         }
-
-        if (random == 2) {
+        if (zombie.randNum == 2){
             return arrowLeft;
         }
-
-        if (random == 3) {
-            return arrowDown;
+        if (zombie.randNum == 3){
+            return arrowRight;
         }
         return null;
-
     }
 
     public boolean isUp() {
