@@ -25,6 +25,7 @@ public class Zombie {
     private float statetime = 0;
     private final float MOVEMENT = 100;
     private Animation zombiewalk;
+    private Arrow arrow;
 
     public Zombie(int x, int y) {
         position = new Vector3(x, y, 0);
@@ -39,6 +40,14 @@ public class Zombie {
         bounds = new Rectangle(position.x, position.y, zombiewalk.getKeyFrames()[0].getTexture().getWidth(), zombiewalk.getKeyFrames()[0].getTexture().getHeight());
     }
 
+    public void randNum(){
+        int random = (int) (Math.random()*3);
+    }
+    
+    public void arrow(){
+        
+    }
+    
     public void update(float deltaTime) {
         // scaling velocity by time
         velocity.scl(deltaTime);
