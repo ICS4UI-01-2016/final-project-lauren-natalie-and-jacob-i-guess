@@ -6,7 +6,6 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -18,43 +17,36 @@ import com.badlogic.gdx.utils.Array;
  * @author halll7908
  */
 public class Zombie {
-    static int randNum;
 
+    static int randNum;
     private Vector3 position;
     private Vector3 velocity;
     private Rectangle bounds;
     private float statetime = 0;
     private final float MOVEMENT = 100;
-    private Animation zombiewalk;
-    private Arrow arrow;
-    // arrow textures
-    public Texture arrowUp;
-    public Texture arrowRight;
-    public Texture arrowLeft;
-    public Texture arrowDown;
+    //arrow+zombie
+    public Texture zombieUp;
+    public Texture zombieDown;
 
     public Zombie(int x, int y) {
         position = new Vector3(x, y, 0);
         velocity = new Vector3(MOVEMENT, 0, 0);
-        // arrows
-        arrowUp = new Texture("arrowUp.png");
-        arrowRight = new Texture("arrowRight.png");
-        arrowLeft = new Texture("arrowLeft.png");
-        arrowDown = new Texture("arrowDown.png ");
 
-        Array<TextureRegion> frames = new Array<TextureRegion>();
-        for (int i = 1; i <= 2; i++) {                                              // FIX THIS?
-            frames.add(new TextureRegion(new Texture("ZombieChild" + i + ".png")));
-        }
-        zombiewalk = new Animation(0.2f, frames);
-        zombiewalk.setPlayMode(Animation.PlayMode.LOOP);
-        bounds = new Rectangle(position.x, position.y, zombiewalk.getKeyFrames()[0].getTexture().getWidth(), zombiewalk.getKeyFrames()[0].getTexture().getHeight());
+        // arrow+zombie
+        zombieUp = new Texture("zombieUp.png");
+        zombieDown = new Texture("zombieDown.png");
+
+        // zombie bounds
+        // zombieUp
+        bounds = new Rectangle(position.x, position.y, zombieUp.getWidth(), zombieUp.getHeight());
+        //zombieDown
+        bounds = new Rectangle(position.x, position.y, zombieDown.getWidth(), zombieDown.getHeight());
     }
 
-    public void randNum(){
-        randNum = (int) (Math.random()*3);
+    public void randNum() {
+        randNum = (int) (Math.random() * 3);
     }
-    
+
     public void update(float deltaTime) {
         // scaling velocity by time
         velocity.scl(deltaTime);
@@ -69,23 +61,26 @@ public class Zombie {
     }
 
     public void render(SpriteBatch batch) {
-        batch.draw(zombiewalk.getKeyFrame(statetime), position.x, position.y);
-        
         if (randNum == 0) {
-            batch.draw(arrowUp, getX(), getY() + 200);
+            batch.draw(zombieUp, position.x, position.y);
         }
-
         if (randNum == 1) {
-            batch.draw(arrowRight, getX(), getY() + 200);
+            batch.draw(zombieDown, position.x, position.y);
         }
+    }
 
-        if (randNum == 2) {
-            batch.draw(arrowLeft, getX(), getY() + 200);
+    public boolean isUp() {
+        if (randNum == 0) {
+            return true;
         }
+        return false;
+    }
 
-        if (randNum == 3) {
-            batch.draw(arrowDown, getX(), getY() + 200);
+    public boolean isDown() {
+        if (randNum == 1) {
+            return true;
         }
+        return false;
     }
 
     public float getX() {

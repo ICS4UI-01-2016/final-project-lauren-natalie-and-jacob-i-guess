@@ -10,7 +10,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.Arrow;
 import com.mygdx.game.Shigeru;
 import com.mygdx.game.SuicideForest;
 import com.mygdx.game.Zombie;
@@ -23,7 +22,6 @@ public class PlayState extends State {
 
     private Shigeru shigeru;
     private Zombie[] zombie;
-    private Arrow[] arrow;
     private Texture heart1;
     private Texture heart2;
     private Texture heart3;
@@ -48,16 +46,9 @@ public class PlayState extends State {
             zombie[i] = new Zombie(680 + 150 * i, 30);
         }
 
-        // creating the arrows
-        arrow = new Arrow[4];
-        for (int i = 0; i < arrow.length; i++) {
-            arrow[i] = new Arrow(680, 30);
-        }
-
         //create music and play it
         musicPlay = Gdx.audio.newMusic(Gdx.files.internal("GameplayMusic.mp3"));
         musicPlay.play();
-
     }
 
     @Override
@@ -78,11 +69,6 @@ public class PlayState extends State {
         // draw the zombie
         for (int i = 0; i < zombie.length; i++) {
             zombie[i].render(batch);
-        }
-
-        // draw the arrows
-        for (int i = 0; i < arrow.length; i++) {
-            arrow[i].render(batch);
         }
 
         // end the stuff to draw
@@ -118,58 +104,19 @@ public class PlayState extends State {
     @Override
     public void handleInput() {
         // handle any player input changes
-
-        // pushUpButton
-        for (int i = 0; i < arrow.length; i++) {
-            // if arrow above zombie is UP
-            if (arrow[i].isUp() == true) {
-                if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-                    for (int j = 0; j < zombie.length; j++) {
-                        System.out.println("here");
-                        // makes current zombie texture null
-                        zombie[j] = null;
-                        // create new zombie at spawn
-                        zombie[j] = new Zombie(680, 30);
-                    }
-                }
+        for (int i = 0; i < zombie.length; i++) {
+            if (zombie[i].isUp() == true && Gdx.input.isKeyPressed(Input.Keys.UP)) {
+                zombie[i] = null;
+                zombie[i] = new Zombie (680, 30);
             }
         }
-
-        // pushDownButton
-        for (int i = 0; i < arrow.length; i++) {
-            // if arrow above zombie is UP
-            if (arrow[i].isUp() == true) {
-                if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-                    System.out.println("here");
-                    for (int j = 0; j < zombie.length; j++) {
-                        // makes current zombie texture null
-                        zombie[j] = null;
-                        // create new zombie at spawn
-                        zombie[j] = new Zombie(680, 30);
-                    }
-                }
+        
+        for (int i = 0; i < zombie.length; i++) {
+            if (zombie[i].isDown() == true && Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+                zombie[i] = null;
+                zombie[i] = new Zombie (680, 30);
             }
         }
-
-//        // pushRightButton
-//        // if arrow above zombie is RIGHT
-//        if (arrow.isRight()) {
-//            if (Gdx.input.isButtonPressed(Input.Keys.RIGHT)) {
-//                for (int i = 0; i < zombie.length; i++) {
-//                    zombie[i] = new Zombie(680, 30);
-//                }
-//            }
-//        }
-//
-//        // pushLeftButton
-//        // if arrow above zombie is LEFT
-//        if (arrow.isLeft()) {
-//            if (Gdx.input.isButtonPressed(Input.Keys.LEFT)) {
-//                for (int i = 0; i < zombie.length; i++) {
-//                    zombie[i] = new Zombie(680, 30);
-//                }
-//            }
-//        }
     }
 
     @Override
