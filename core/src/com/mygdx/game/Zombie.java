@@ -95,6 +95,10 @@ public class Zombie {
         return 10;
     }
 
+    public Rectangle returnToStartXY() {
+        return getBounds();
+    }
+
     public Rectangle getBounds() {
         if (randNum == 0) {
             return boundsUp;

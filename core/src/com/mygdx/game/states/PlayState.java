@@ -21,7 +21,7 @@ import com.mygdx.game.Zombie;
 public class PlayState extends State {
 
     private Shigeru shigeru;
-    private Zombie[] zombie;
+    private Zombie zombie;
     private Texture heart1;
     private Texture heart2;
     private Texture heart3;
@@ -40,11 +40,7 @@ public class PlayState extends State {
         // move the camera to match the shigeru
         moveCameraX(shigeru.getX() + CAM_X_OFFSET);
 
-        // creating the zombies
-        zombie = new Zombie[3];
-        for (int i = 0; i < zombie.length; i++) {
-            zombie[i] = new Zombie(680 + 150 * i, 30);
-        }
+        zombie = new Zombie(680 + 150, 30);
 
         //create music and play it
         musicPlay = Gdx.audio.newMusic(Gdx.files.internal("GameplayMusic.mp3"));
@@ -67,9 +63,7 @@ public class PlayState extends State {
         // draw the shigeru
         shigeru.render(batch);
         // draw the zombie
-        for (int i = 0; i < zombie.length; i++) {
-            zombie[i].render(batch);
-        }
+        zombie.render(batch);
 
         // end the stuff to draw
         batch.end();
@@ -91,13 +85,11 @@ public class PlayState extends State {
         }
 
         // did the zombie hit the shigeru
-        for (int i = 0; i < zombie.length; i++) {
-            if (zombie[i].collides(shigeru)) {
-                // end the game
-                StateManager gsm = getStateManager();
-                // pop off the game screen to go to menu 
-                gsm.set(new EndScreen(gsm));
-            }
+        if (zombie.collides(shigeru)) {
+            // end the game
+            StateManager gsm = getStateManager();
+            // pop off the game screen to go to menu 
+            gsm.set(new EndScreen(gsm));
         }
     }
 
@@ -105,20 +97,14 @@ public class PlayState extends State {
     public void handleInput() {
         // handle any player input changes
         // zombie up - up key pressed
-        for (int i = 0; i < zombie.length; i++) {
-            if (zombie[i].isUp() == true && Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-                // delete and respawn at far right
-                zombie[i] = null;
-                zombie[i] = new Zombie (680, 30);
-            }
+        if (zombie.isUp() == true && Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+            // delete and respawn at far right
+            zombie.returnToStartXY();
         }
         // zombie down - down key pressed
-        for (int i = 0; i < zombie.length; i++) {
-            if (zombie[i].isDown() == true && Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
-                // delete and respawn at far right
-                zombie[i] = null;
-                zombie[i] = new Zombie (680, 30);
-            }
+        if (zombie.isDown() == true && Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
+            // delete and respawn at far right
+            zombie.returnToStartXY();
         }
     }
 
@@ -126,12 +112,9 @@ public class PlayState extends State {
     public void dispose() {
         bg.dispose();
         shigeru.dispose();
-        for (int i = 0; i < zombie.length; i++) {
-            zombie[i].dispose();
-            }
-            //stop the music from playing
-            musicPlay.dispose();
+        zombie.dispose();
+        //stop the music from playing
+        musicPlay.dispose();
 
-        
     }
 }
