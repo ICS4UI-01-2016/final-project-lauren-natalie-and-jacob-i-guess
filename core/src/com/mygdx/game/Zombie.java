@@ -21,7 +21,8 @@ public class Zombie {
     static int randNum;
     private Vector3 position;
     private Vector3 velocity;
-    private Rectangle bounds;
+    private Rectangle boundsUp;
+    private Rectangle boundsDown;
     private float statetime = 0;
     private final float MOVEMENT = 100;
     //arrow+zombie
@@ -38,13 +39,9 @@ public class Zombie {
 
         // zombie bounds
         // zombieUp
-        bounds = new Rectangle(position.x, position.y, zombieUp.getWidth(), zombieUp.getHeight());
+        boundsUp = new Rectangle(position.x, position.y, zombieUp.getWidth(), zombieUp.getHeight());
         //zombieDown
-        bounds = new Rectangle(position.x, position.y, zombieDown.getWidth(), zombieDown.getHeight());
-    }
-
-    public void randNum() {
-        randNum = (int) (Math.random() * 3);
+        boundsDown = new Rectangle(position.x, position.y, zombieDown.getWidth(), zombieDown.getHeight());
     }
 
     public void update(float deltaTime) {
@@ -56,8 +53,13 @@ public class Zombie {
         velocity.scl(1 / deltaTime);
 
         // set the new bounds
-        bounds.setPosition(position.x, position.y);
+        boundsUp.setPosition(position.x, position.y);
+        boundsDown.setPosition(position.x, position.y);
         statetime += deltaTime;
+    }
+
+    public void randNum() {
+        randNum = (int) (Math.random() * 2);
     }
 
     public void render(SpriteBatch batch) {
@@ -71,6 +73,7 @@ public class Zombie {
 
     public boolean isUp() {
         if (randNum == 0) {
+            System.out.println("here" + randNum);
             return true;
         }
         return false;
@@ -78,6 +81,7 @@ public class Zombie {
 
     public boolean isDown() {
         if (randNum == 1) {
+            System.out.println("here" + randNum);
             return true;
         }
         return false;
@@ -92,11 +96,17 @@ public class Zombie {
     }
 
     public Rectangle getBounds() {
-        return bounds;
+        if (randNum == 0) {
+            return boundsUp;
+        }
+        if (randNum == 1) {
+            return boundsDown;
+        }
+        return null;
     }
 
     public boolean collides(Shigeru b) {
-        if (bounds.overlaps(b.getBounds())) {
+        if (boundsUp.overlaps(b.getBounds()) || boundsDown.overlaps(b.getBounds())) {
             return true;
         }
         return false;

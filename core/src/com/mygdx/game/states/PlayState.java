@@ -95,7 +95,7 @@ public class PlayState extends State {
             if (zombie[i].collides(shigeru)) {
                 // end the game
                 StateManager gsm = getStateManager();
-                // pop off the game screen to go to menu                         // how to push end screen 
+                // pop off the game screen to go to menu 
                 gsm.set(new EndScreen(gsm));
             }
         }
@@ -104,15 +104,18 @@ public class PlayState extends State {
     @Override
     public void handleInput() {
         // handle any player input changes
+        // zombie up - up key pressed
         for (int i = 0; i < zombie.length; i++) {
-            if (zombie[i].isUp() == true && Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            if (zombie[i].isUp() == true && Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+                // delete and respawn at far right
                 zombie[i] = null;
                 zombie[i] = new Zombie (680, 30);
             }
         }
-        
+        // zombie down - down key pressed
         for (int i = 0; i < zombie.length; i++) {
-            if (zombie[i].isDown() == true && Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            if (zombie[i].isDown() == true && Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
+                // delete and respawn at far right
                 zombie[i] = null;
                 zombie[i] = new Zombie (680, 30);
             }
@@ -125,9 +128,10 @@ public class PlayState extends State {
         shigeru.dispose();
         for (int i = 0; i < zombie.length; i++) {
             zombie[i].dispose();
+            }
             //stop the music from playing
             musicPlay.dispose();
 
-        }
+        
     }
 }
