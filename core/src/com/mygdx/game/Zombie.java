@@ -55,10 +55,6 @@ public class Zombie {
         randNum = (int) (Math.random()*3);
     }
     
-    public void arrow(){
-        
-    }
-    
     public void update(float deltaTime) {
         // scaling velocity by time
         velocity.scl(deltaTime);
@@ -74,7 +70,6 @@ public class Zombie {
 
     public void render(SpriteBatch batch) {
         batch.draw(zombiewalk.getKeyFrame(statetime), position.x, position.y);
-        // batch.draw(arrowPic, position.x, position.y + 200);
         
         if (randNum == 0) {
             batch.draw(arrowUp, getX(), getY() + 200);
