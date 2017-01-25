@@ -5,6 +5,7 @@
  */
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -41,20 +42,15 @@ public class Zombie {
         // zombieUp
         boundsUp = new Rectangle(position.x, position.y, zombieUp.getWidth(), zombieUp.getHeight());
         //zombieDown
-        boundsDown = new Rectangle(position.x, position.y, zombieDown.getWidth(), zombieDown.getHeight());
+        // boundsDown = new Rectangle(position.x, position.y, zombieDown.getWidth(), zombieDown.getHeight());
     }
 
     public void update(float deltaTime) {
-        // scaling velocity by time
-        velocity.scl(deltaTime);
-        // adding velocity to position
-        position.add(velocity);
-        // unscale velocity
-        velocity.scl(1 / deltaTime);
+
 
         // set the new bounds
         boundsUp.setPosition(position.x, position.y);
-        boundsDown.setPosition(position.x, position.y);
+        // boundsDown.setPosition(position.x, position.y);
         statetime += deltaTime;
     }
 
@@ -64,29 +60,13 @@ public class Zombie {
 
     public void render(SpriteBatch batch) {
         // if (randNum == 0) {
-            batch.draw(zombieUp, position.x, position.y);
+        batch.draw(zombieUp, position.x, position.y);
         // }
         // if (randNum == 1) {
         //     batch.draw(zombieDown, position.x, position.y);
         // }
     }
-
-//    public boolean isUp() {
-//        if (randNum == 0) {
-//            // System.out.println("here" + randNum);
-//            return true;
-//        }
-//        return false;
-//    }
-
-//    public boolean isDown() {
-//        if (randNum == 1) {
-//            // System.out.println("here" + randNum);
-//            return true;
-//        }
-//        return false;
-//    }
-
+    
     public float getX() {
         return position.x;
     }
@@ -95,13 +75,17 @@ public class Zombie {
         return 10;
     }
 
-    public Rectangle returnToStartXY() {
-        return getBounds();
+    public Rectangle returnToStartX() {
+        while (true) {
+            position.x = Gdx.graphics.getWidth();
+            return getBounds();
+        }
+
     }
 
     public Rectangle getBounds() {
         //if (randNum == 0) {
-            return boundsUp;
+        return boundsUp;
         //}
         //if (randNum == 1) {
         //    return boundsDown;
@@ -110,7 +94,8 @@ public class Zombie {
     }
 
     public boolean collides(Shigeru b) {
-        if (boundsUp.overlaps(b.getBounds()) || boundsDown.overlaps(b.getBounds())) {
+        // || boundsDown.overlaps(b.getBounds())
+        if (boundsUp.overlaps(b.getBounds())) {
             return true;
         }
         return false;
