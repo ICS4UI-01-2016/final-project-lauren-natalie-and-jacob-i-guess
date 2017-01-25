@@ -97,13 +97,18 @@ public class PlayState extends State {
     public void handleInput() {
         // handle any player input changes
         // zombie up - up key pressed
-        if (zombie.isUp() == true && Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-            // delete and respawn at far right
-            zombie.returnToStartXY();
-        }
-        // zombie down - down key pressed
-        if (zombie.isDown() == true && Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
-            // delete and respawn at far right
+//        if (zombie.isUp() == true && Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+//            // delete and respawn at far right
+//            zombie.returnToStartXY();
+//        }
+//        // zombie down - down key pressed
+//        if (zombie.isDown() == true && Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
+//            // delete and respawn at far right
+//            zombie.returnToStartXY();
+//        }
+        // for just up
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+//            // delete and respawn at far right
             zombie.returnToStartXY();
         }
     }
@@ -115,6 +120,5 @@ public class PlayState extends State {
         zombie.dispose();
         //stop the music from playing
         musicPlay.dispose();
-
     }
 }

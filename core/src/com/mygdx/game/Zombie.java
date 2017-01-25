@@ -35,7 +35,7 @@ public class Zombie {
 
         // arrow+zombie
         zombieUp = new Texture("zombieUp.png");
-        zombieDown = new Texture("zombieDown.png");
+        // zombieDown = new Texture("zombieDown.png");
 
         // zombie bounds
         // zombieUp
@@ -63,29 +63,29 @@ public class Zombie {
     }
 
     public void render(SpriteBatch batch) {
-        if (randNum == 0) {
+        // if (randNum == 0) {
             batch.draw(zombieUp, position.x, position.y);
-        }
-        if (randNum == 1) {
-            batch.draw(zombieDown, position.x, position.y);
-        }
+        // }
+        // if (randNum == 1) {
+        //     batch.draw(zombieDown, position.x, position.y);
+        // }
     }
 
-    public boolean isUp() {
-        if (randNum == 0) {
-            System.out.println("here" + randNum);
-            return true;
-        }
-        return false;
-    }
+//    public boolean isUp() {
+//        if (randNum == 0) {
+//            // System.out.println("here" + randNum);
+//            return true;
+//        }
+//        return false;
+//    }
 
-    public boolean isDown() {
-        if (randNum == 1) {
-            System.out.println("here" + randNum);
-            return true;
-        }
-        return false;
-    }
+//    public boolean isDown() {
+//        if (randNum == 1) {
+//            // System.out.println("here" + randNum);
+//            return true;
+//        }
+//        return false;
+//    }
 
     public float getX() {
         return position.x;
@@ -100,13 +100,13 @@ public class Zombie {
     }
 
     public Rectangle getBounds() {
-        if (randNum == 0) {
+        //if (randNum == 0) {
             return boundsUp;
-        }
-        if (randNum == 1) {
-            return boundsDown;
-        }
-        return null;
+        //}
+        //if (randNum == 1) {
+        //    return boundsDown;
+        //}
+        //return null;
     }
 
     public boolean collides(Shigeru b) {
