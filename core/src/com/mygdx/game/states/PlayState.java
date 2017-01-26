@@ -40,7 +40,7 @@ public class PlayState extends State {
         // move the camera to match the shigeru
         moveCameraX(shigeru.getX() + CAM_X_OFFSET);
 
-        zombie = new Zombie(900 + 150, 30);
+        zombie = new Zombie(900, 30);
 
         //create music and play it
         musicPlay = Gdx.audio.newMusic(Gdx.files.internal("GameplayMusic.mp3"));
@@ -107,10 +107,13 @@ public class PlayState extends State {
 //            zombie.returnToStartXY();
 //        }
         // for just up
-
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-            // delete and respawn at far right
+        while (zombie.collides(shigeru) == false) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+                // delete and respawn at far right
                 zombie.returnToStartX();
+                // add point to counter
+                
+            }
         }
     }
 
