@@ -74,7 +74,7 @@ public class PlayState extends State {
         shigeru.render(batch);
         // draw the zombie
         zombie.render(batch);
-        // draw score on screen
+        // draw score on screen                                                 // FIX
         scoreFont.setColor(1.0f, 1.0f, 1.0f, 1.0f);
         scoreFont.draw(batch, scoreString, 500, 800);
         // end the stuff to draw
