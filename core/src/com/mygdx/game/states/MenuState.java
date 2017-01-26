@@ -26,8 +26,6 @@ public class MenuState extends State {
     private Rectangle play;
     private Rectangle help;
     private Rectangle credits;
-    private float buttonx = 0;
-    private float buttony = 0;
     private ShapeRenderer shapeRenderer = new ShapeRenderer();
     private Music music;
 
@@ -36,12 +34,12 @@ public class MenuState extends State {
         bg = new Texture("MenuScreen960x720.png");
         setCameraView(SuicideForest.WIDTH, SuicideForest.HEIGHT);
         setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
-        //create parameter for the "button"s
+        //create parameter for the buttons
         play = new Rectangle(290, 170, 378, 150);
-        help = new Rectangle(180, 38, 245, 90);       
-        credits = new Rectangle(535, 35, 245, 90);      
-       
-        //create music and play it
+        help = new Rectangle(180, 38, 245, 90);
+        credits = new Rectangle(535, 35, 245, 90);
+
+        // create music and play it
         music = Gdx.audio.newMusic(Gdx.files.internal("OpeningMusic.mp3"));
         music.play();
     }
@@ -53,7 +51,6 @@ public class MenuState extends State {
         //draw background image
         batch.draw(bg, 0, 0, getViewWidth(), getViewHeight());
         batch.end();
-
     }
 
     @Override
@@ -62,29 +59,28 @@ public class MenuState extends State {
 
     @Override
     public void handleInput() {
-        //Check if parameter is clicked on, to screen menu screens
+        // Check if parameter is clicked on, to screen menu screens
         if (Gdx.input.justTouched()) {
 
             //get the mouse click/touch position
-            Vector3 touch = new Vector3(Gdx.input.getX(), Gdx.input.getY(),0);
-      
+            Vector3 touch = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+
             unproject(touch);
             //check if button is pressed
-            if(play.contains(touch.x, touch.y)){
+            if (play.contains(touch.x, touch.y)) {
                 music.pause();
                 StateManager gsm = getStateManager();
                 gsm.push(new PlayState(gsm));
 
             } else if (help.contains(touch.x, touch.y)) {
-              music.pause();
+                music.pause();
                 StateManager gsm = getStateManager();
                 gsm.push(new HelpState(gsm));
 
             } else if (credits.contains(touch.x, touch.y)) {
-               music.pause();
+                music.pause();
                 StateManager gsm = getStateManager();
                 gsm.push(new CreditState(gsm));
-
             }
         }
     }

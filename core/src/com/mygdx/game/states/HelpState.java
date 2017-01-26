@@ -26,7 +26,9 @@ public class HelpState extends State {
 
     public HelpState(StateManager gsm) {
         super(gsm);
+        // load in background texture
         bg2 = new Texture("helpScreen.jpg");
+        // setting cmaera view
         setCameraView(SuicideForest.WIDTH, SuicideForest.HEIGHT);
         setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
         //create parameter for the "button"
@@ -58,11 +60,11 @@ public class HelpState extends State {
             //convert that point to came coordinates
             unproject(touch);
  
+           // when rectangle is touched, screen will return to menu
            if(back.contains(touch.x, touch.y)){
                music2.pause();
                 StateManager gsm = getStateManager();
                 gsm.push(new MenuState(gsm));
-
             }
         }
     }

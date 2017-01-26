@@ -26,7 +26,9 @@ public class CreditState extends State {
 
     public CreditState(StateManager gsm) {
         super(gsm);
+        // set background texture
         bg1 = new Texture("creditScreen.jpg");
+        // adjust camera views
         setCameraView(SuicideForest.WIDTH, SuicideForest.HEIGHT);
         setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
         //create parameter for the "button"
@@ -60,11 +62,11 @@ public class CreditState extends State {
             //convert that point to came coordinates
             unproject(touch);
 
+           // when rectangle is touched, screen will return to menu
            if(back.contains(touch.x, touch.y)){
                 music1.pause();
                 StateManager gsm = getStateManager();
                 gsm.push(new MenuState(gsm));
-
             }
         }
     }

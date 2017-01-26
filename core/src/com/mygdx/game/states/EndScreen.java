@@ -23,11 +23,13 @@ public class EndScreen extends State {
 
     public EndScreen(StateManager gsm) {
         super(gsm);
+        // load in texture
         es = new Texture("endScreen.png");
+        // adjust camera view
         setCameraView(SuicideForest.WIDTH, SuicideForest.HEIGHT);
         setCameraPosition(getViewWidth() / 2, getViewHeight() / 2);
         
-         //create music and play it
+        //create music and play it
         musicEnd = Gdx.audio.newMusic(Gdx.files.internal("DeathMusic.mp3"));
         musicEnd.play();
     }
@@ -55,6 +57,7 @@ public class EndScreen extends State {
 
     @Override
     public void dispose() {
+        // dispose of background
         es.dispose();
         //stop playing the music
         musicEnd.dispose();
