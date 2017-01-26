@@ -41,7 +41,7 @@ public class PlayState extends State {
         // move the camera to match the shigeru
         moveCameraX(shigeru.getX() + CAM_X_OFFSET);
         //create the zombie
-        zombie = new Zombie(900, 30);
+        zombie = new Zombie(1000, 30);
         //create music and play it
         musicPlay = Gdx.audio.newMusic(Gdx.files.internal("GameplayMusic.mp3"));
         musicPlay.play();
@@ -73,7 +73,7 @@ public class PlayState extends State {
     public void update(float deltaTime) {
         // update any game models
         shigeru.update(deltaTime);
-         zombie.update(deltaTime);
+        zombie.update(deltaTime);
         // move the camera to match the shigeru
         moveCameraX(shigeru.getX() + CAM_X_OFFSET);
         // did the zombie hit the shigeru
@@ -84,8 +84,8 @@ public class PlayState extends State {
             gsm.set(new EndScreen(gsm));
         }
         //update zombie returning to its original spot (off the screen)
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-            zombie.returnToStartX();         
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+            zombie.returnToStartX();
         }
     }
 
@@ -103,14 +103,17 @@ public class PlayState extends State {
 //            zombie.returnToStartXY();
 //        }
         // for just up
-            
+
         //if the user presses the up key
-        
-            if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-                // delete and respawn at far right
-                zombie.returnToStartX();
-            }
-        
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+            StateManager gsm = getStateManager();
+            // pop off the game screen to go to menu 
+            gsm.set(new PlayState(gsm));
+            // add point to counter
+            // 
+        }
+
     }
 
     @Override
