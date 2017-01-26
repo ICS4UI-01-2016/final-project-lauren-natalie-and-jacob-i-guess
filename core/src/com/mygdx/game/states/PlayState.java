@@ -32,6 +32,7 @@ public class PlayState extends State {
     public PlayState(StateManager sm) {
         super(sm);
         setCameraView(SuicideForest.WIDTH, SuicideForest.HEIGHT);
+        //create shigeru
         shigeru = new Shigeru(90, 30);
         bg = new Texture("fullBgPic.png");
         heart1 = new Texture("heart.png");
@@ -39,9 +40,8 @@ public class PlayState extends State {
         heart3 = new Texture("heart.png");
         // move the camera to match the shigeru
         moveCameraX(shigeru.getX() + CAM_X_OFFSET);
-
+        //create the zombie
         zombie = new Zombie(900, 30);
-
         //create music and play it
         musicPlay = Gdx.audio.newMusic(Gdx.files.internal("GameplayMusic.mp3"));
         musicPlay.play();
@@ -73,23 +73,19 @@ public class PlayState extends State {
     public void update(float deltaTime) {
         // update any game models
         shigeru.update(deltaTime);
+         zombie.update(deltaTime);
         // move the camera to match the shigeru
         moveCameraX(shigeru.getX() + CAM_X_OFFSET);
-
-        // did shigeru hit the bottom of the screen
-        if (shigeru.getY() <= 0) {
-            // end the game
-            StateManager gsm = getStateManager();
-            // pop off the game screen to go to menu
-            gsm.pop();
-        }
-
         // did the zombie hit the shigeru
         if (zombie.collides(shigeru)) {
             // end the game
             StateManager gsm = getStateManager();
             // pop off the game screen to go to menu 
             gsm.set(new EndScreen(gsm));
+        }
+        //update zombie returning to its original spot (off the screen)
+        if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
+            zombie.returnToStartX();         
         }
     }
 
@@ -107,18 +103,19 @@ public class PlayState extends State {
 //            zombie.returnToStartXY();
 //        }
         // for just up
-        while (zombie.collides(shigeru) == false) {
+            
+        //if the user presses the up key
+        
             if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
                 // delete and respawn at far right
                 zombie.returnToStartX();
-                // add point to counter
-                
             }
-        }
+        
     }
 
     @Override
     public void dispose() {
+        //remove all objects that dont belong in other states
         bg.dispose();
         shigeru.dispose();
         zombie.dispose();

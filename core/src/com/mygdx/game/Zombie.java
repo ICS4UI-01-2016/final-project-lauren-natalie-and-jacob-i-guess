@@ -6,10 +6,12 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
@@ -20,8 +22,7 @@ import com.badlogic.gdx.utils.Array;
 public class Zombie {
 
     static int randNum;
-    private Vector3 position;
-    private Vector3 velocity;
+    private Vector2 position;
     private Rectangle boundsUp;
     private Rectangle boundsDown;
     private float statetime = 0;
@@ -31,8 +32,7 @@ public class Zombie {
     public Texture zombieDown;
 
     public Zombie(int x, int y) {
-        position = new Vector3(x, y, 0);
-        velocity = new Vector3(MOVEMENT, 0, 0);
+        position = new Vector2(x, y);
 
         // arrow+zombie
         zombieUp = new Texture("zombieUp.png");
@@ -46,8 +46,6 @@ public class Zombie {
     }
 
     public void update(float deltaTime) {
-
-
         // set the new bounds
         boundsUp.setPosition(position.x, position.y);
         // boundsDown.setPosition(position.x, position.y);
@@ -59,12 +57,7 @@ public class Zombie {
     }
 
     public void render(SpriteBatch batch) {
-        // if (randNum == 0) {
         batch.draw(zombieUp, position.x, position.y);
-        // }
-        // if (randNum == 1) {
-        //     batch.draw(zombieDown, position.x, position.y);
-        // }
     }
     
     public float getX() {
@@ -75,14 +68,14 @@ public class Zombie {
         return 10;
     }
 
-    public Rectangle returnToStartX() {
-        while (true) {
-            position.x = Gdx.graphics.getWidth();
-            return getBounds();
-        }
-
+    //returns zombie to off the screen
+    public void returnToStartX() {
+       if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
+                position.x = Gdx.graphics.getWidth();
+       }
+   
     }
-
+    
     public Rectangle getBounds() {
         //if (randNum == 0) {
         return boundsUp;
@@ -102,8 +95,6 @@ public class Zombie {
     }
 
     public void dispose() {
-        //  for (int i = 0; i < zombie.length; i++) {
-        //  zombie.dispose();
-        // }
+     zombieUp.dispose();
     }
 }
