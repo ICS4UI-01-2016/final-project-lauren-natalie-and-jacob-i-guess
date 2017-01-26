@@ -67,14 +67,6 @@ public class Zombie {
     public float getY() {
         return 10;
     }
-
-    //returns zombie to off the screen
-    public void returnToStartX() {
-       if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-                position.x = Gdx.graphics.getWidth();
-       }
-   
-    }
     
     public Rectangle getBounds() {
         //if (randNum == 0) {

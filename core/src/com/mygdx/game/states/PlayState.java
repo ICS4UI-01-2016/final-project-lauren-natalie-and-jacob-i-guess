@@ -9,10 +9,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Shigeru;
 import com.mygdx.game.SuicideForest;
 import com.mygdx.game.Zombie;
+import java.awt.Font;
 
 /**
  *
@@ -27,6 +29,10 @@ public class PlayState extends State {
     private Texture heart3;
     private Texture bg;
     private Music musicPlay;
+    // score
+    private int score;
+    private String scoreString;
+    BitmapFont scoreFont;
     private final float CAM_X_OFFSET = 400;
 
     public PlayState(StateManager sm) {
@@ -42,6 +48,10 @@ public class PlayState extends State {
         moveCameraX(shigeru.getX() + CAM_X_OFFSET);
         //create the zombie
         zombie = new Zombie(1000, 30);
+        // score
+        score = 0;
+        scoreString = "kills: 0";
+        scoreFont = new BitmapFont();
         //create music and play it
         musicPlay = Gdx.audio.newMusic(Gdx.files.internal("GameplayMusic.mp3"));
         musicPlay.play();
@@ -64,7 +74,9 @@ public class PlayState extends State {
         shigeru.render(batch);
         // draw the zombie
         zombie.render(batch);
-
+        // draw score on screen
+        scoreFont.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+        scoreFont.draw(batch, scoreString, 500, 800);
         // end the stuff to draw
         batch.end();
     }
@@ -83,46 +95,31 @@ public class PlayState extends State {
             // pop off the game screen to go to menu 
             gsm.set(new EndScreen(gsm));
         }
-        //update zombie returning to its original spot (off the screen)
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-            zombie.returnToStartX();
-        }
     }
 
     @Override
     public void handleInput() {
         // handle any player input changes
-        // zombie up - up key pressed
-//        if (zombie.isUp() == true && Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-//            // delete and respawn at far right
-//            zombie.returnToStartXY();
-//        }
-//        // zombie down - down key pressed
-//        if (zombie.isDown() == true && Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
-//            // delete and respawn at far right
-//            zombie.returnToStartXY();
-//        }
-        // for just up
-
         //if the user presses the up key
-
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
             StateManager gsm = getStateManager();
             // pop off the game screen to go to menu 
             gsm.set(new PlayState(gsm));
             // add point to counter
-            // 
+            score++;
+            scoreString = "score: " + score;
         }
-
     }
 
     @Override
     public void dispose() {
-        //remove all objects that dont belong in other states
+        // remove all objects that dont belong in other states
         bg.dispose();
         shigeru.dispose();
         zombie.dispose();
-        //stop the music from playing
+        // stop the music from playing
         musicPlay.dispose();
+        // delete font from screen
+        // scoreFont.dispose();
     }
 }
